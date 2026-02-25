@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="About" description="Adrien Rouquié — artiste 3D, illustrateur et créateur de mondes imaginaires, basé à Bordeaux.">
+  <section class="px-6 py-16 max-w-2xl mx-auto">
+
+    <!-- En-tête -->
+    <div class="mb-12">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-8 h-px bg-accent"></span>
+        <span class="text-sm font-body text-accent font-medium tracking-wide uppercase">À propos</span>
+      </div>
+      <h1 class="font-display text-5xl font-bold text-ink">Adrien Rouquié</h1>
+    </div>
+
+    <!-- Bio -->
+    <div class="space-y-5 mb-12">
+      <p class="font-body text-lg text-ink/80 leading-relaxed">
+        Artiste 3D &amp; illustrateur basé à Bordeaux. Spécialisé en personnages et mondes imaginaires —
+        style stylisé, humoristique, coloré.
+      </p>
+      <p class="font-body text-ink/65 leading-relaxed">
+        Formation Supinfocom Arles (Mopa) et École Estienne. J'ai travaillé comme Character Artist
+        chez <strong class="text-ink font-medium">Passion Pictures</strong> (Londres), CG Supervisor sur
+        <em>Tchoupi à la campagne</em>, et actuellement Artiste 3D chez
+        <strong class="text-ink font-medium">Golden Wolf</strong>.
+      </p>
+      <p class="font-body text-ink/65 leading-relaxed">
+        En parallèle je crée des projets perso : jeux (Godot), outils (Blender), apps web, BD.
+        Ce site en est la vitrine.
+      </p>
+    </div>
+
+    <!-- Séparateur -->
+    <div class="h-px bg-ink/8 mb-12"></div>
+
+    <!-- Liens -->
+    <h2 class="font-display text-xl font-bold mb-6 text-ink">Me trouver</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {[
+        { label: 'ArtStation', sub: 'Travaux 3D professionnels', href: 'https://artstation.com/adriflex', external: true },
+        { label: 'Instagram', sub: 'Illustrations & updates', href: 'https://instagram.com/adrien.flex', external: true },
+        { label: 'LinkedIn', sub: 'Parcours professionnel', href: 'https://linkedin.com/in/adrienrouquie', external: true },
+        { label: 'Email', sub: 'rouquie.adrien@gmail.com', href: 'mailto:rouquie.adrien@gmail.com', external: false },
+      ].map(link => (
+        <a
+          href={link.href}
+          target={link.external ? '_blank' : undefined}
+          rel={link.external ? 'noopener noreferrer' : undefined}
+          class="flex items-center justify-between p-4 rounded-xl border border-ink/10 hover:border-accent hover:text-accent transition-all duration-200 group"
+        >
+          <div>
+            <span class="font-body font-medium text-ink group-hover:text-accent transition-colors duration-200 block">
+              {link.label}
+            </span>
+            <span class="text-xs font-body text-ink/40 mt-0.5 block">{link.sub}</span>
+          </div>
+          <span class="text-ink/30 group-hover:text-accent transition-colors duration-200 text-sm">
+            {link.external ? '↗' : '→'}
+          </span>
+        </a>
+      ))}
+    </div>
+
+  </section>
+</Base>

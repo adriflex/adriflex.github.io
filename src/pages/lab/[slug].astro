@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getCollection('lab');
+  return posts.map(entry => ({
+    params: { slug: entry.id.replace(/\.md$/, '') },
+    props: { entry },
+  }));
+};
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<Base title={entry.data.title}>
+  <article class="px-6 py-16 max-w-2xl mx-auto">
+
+    <!-- Retour -->
+    <a href="/lab" class="inline-flex items-center gap-2 text-sm font-body text-ink/50 hover:text-accent transition-colors duration-200 mb-10">
+      ← Lab
+    </a>
+
+    <!-- Date + tags -->
+    <div class="flex items-center gap-3 mb-4">
+      <time class="text-sm font-body text-ink/40">
+        {new Date(entry.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+      </time>
+      {entry.data.tags.map(tag => (
+        <span class="text-xs text-ink/40 font-body">#{tag}</span>
+      ))}
+    </div>
+
+    <!-- Titre -->
+    <h1 class="font-display text-4xl font-bold mb-10 text-ink">{entry.data.title}</h1>
+
+    <!-- Séparateur -->
+    <div class="h-px bg-ink/8 mb-10"></div>
+
+    <!-- Contenu -->
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+
+  </article>
+</Base>

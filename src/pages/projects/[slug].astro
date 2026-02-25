@@ -1,0 +1,81 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const projects = await getCollection('projects');
+  return projects.map(entry => ({
+    params: { slug: entry.id.replace(/\.md$/, '') },
+    props: { entry },
+  }));
+};
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<Base title={entry.data.title} description={entry.data.description}>
+  <article class="px-6 py-16 max-w-2xl mx-auto">
+
+    <!-- Retour -->
+    <a href="/projects" class="inline-flex items-center gap-2 text-sm font-body text-ink/50 hover:text-accent transition-colors duration-200 mb-10">
+      ← Projects
+    </a>
+
+    <!-- Zone visuelle colorée -->
+    <div
+      class="h-56 rounded-2xl mb-8 flex items-center justify-center relative overflow-hidden"
+      style={`background-color: color-mix(in srgb, ${entry.data.color} 15%, var(--color-cream));`}
+    >
+      <div
+        class="absolute w-40 h-40 rounded-full opacity-15"
+        style={`background: ${entry.data.color};`}
+      ></div>
+      <span
+        class="relative font-display text-7xl font-bold opacity-25 select-none"
+        style={`color: ${entry.data.color};`}
+      >
+        {entry.data.title.charAt(0)}
+      </span>
+    </div>
+
+    <!-- Tags -->
+    <div class="flex gap-2 flex-wrap mb-5">
+      {entry.data.tags.map(tag => (
+        <span class="text-xs px-3 py-1 rounded-full border border-ink/12 text-ink/50 font-body">
+          {tag}
+        </span>
+      ))}
+      {entry.data.status === 'wip' && (
+        <span class="text-xs px-3 py-1 rounded-full bg-accent/15 text-accent border border-accent/20 font-body font-medium">
+          En cours
+        </span>
+      )}
+    </div>
+
+    <!-- Titre + description -->
+    <h1 class="font-display text-4xl font-bold mb-4 text-ink">{entry.data.title}</h1>
+    <p class="font-body text-lg text-ink/60 mb-8 leading-relaxed">{entry.data.description}</p>
+
+    <!-- CTA si lien externe -->
+    {entry.data.link && (
+      <a
+        href={entry.data.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-ink text-cream font-body font-medium rounded-full hover:bg-accent transition-colors duration-300 text-sm mb-10"
+      >
+        Voir le projet ↗
+      </a>
+    )}
+
+    <!-- Séparateur -->
+    <div class="h-px bg-ink/8 mb-10"></div>
+
+    <!-- Contenu Markdown -->
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+
+  </article>
+</Base>
