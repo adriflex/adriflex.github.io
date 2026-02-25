@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = "Artiste 3D & Illustrateur basé à Bordeaux — personnages, mondes et outils." } = Astro.props;
+const canonicalTitle = title === "Accueil" ? "Adrien Rouquié" : `${title} — Adrien Rouquié`;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{canonicalTitle}</title>
+
+    <!-- Google Fonts : Syne (display) + Lora (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon placeholder -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-cream text-ink font-body min-h-screen flex flex-col antialiased">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur-sm border-b border-ink/8 px-6 py-4">
+      <div class="max-w-5xl mx-auto flex justify-between items-center">
+        <a href="/" class="font-display text-xl font-bold tracking-tight hover:text-accent transition-colors duration-200">
+          Adrien Rouquié
+        </a>
+        <nav class="flex gap-8">
+          <a href="/projects" class="text-sm font-medium text-ink/70 hover:text-accent transition-colors duration-200 relative group">
+            Projects
+            <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-accent transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="/lab" class="text-sm font-medium text-ink/70 hover:text-accent transition-colors duration-200 relative group">
+            Lab
+            <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-accent transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="/about" class="text-sm font-medium text-ink/70 hover:text-accent transition-colors duration-200 relative group">
+            About
+            <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-accent transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-ink/8 px-6 py-8 mt-16">
+      <div class="max-w-5xl mx-auto flex justify-between items-center text-sm text-ink/40">
+        <span>© {new Date().getFullYear()} Adrien Rouquié</span>
+        <div class="flex gap-6">
+          <a href="https://artstation.com/adriflex" target="_blank" rel="noopener" class="hover:text-accent transition-colors duration-200">ArtStation</a>
+          <a href="https://instagram.com/adrien.flex" target="_blank" rel="noopener" class="hover:text-accent transition-colors duration-200">Instagram</a>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
