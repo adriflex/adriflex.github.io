@@ -1,10 +1,134 @@
 ---
 import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const allLab = await getCollection('lab');
+
+// Astro 5 uses entry.id (e.g. "orb-of-avarice.md") — strip extension for URL slug
+const toSlug = (id: string) => id.replace(/\.md$/, '');
+
+const featuredProjects = allProjects
+  .filter(p => p.data.featured && p.data.status === 'published')
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+// Fallback : si aucun projet featured, prendre les 3 premiers publiés
+const displayProjects = featuredProjects.length > 0
+  ? featuredProjects
+  : allProjects
+      .filter(p => p.data.status !== 'archived')
+      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+      .slice(0, 3);
+
+const recentLab = allLab
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 4);
 ---
 <Base title="Accueil">
-  <div class="px-6 py-20 max-w-5xl mx-auto">
-    <h1 class="font-display text-6xl font-bold text-ink">Bonjour</h1>
-    <p class="mt-4 text-lg text-ink/70 font-body">Test du layout.</p>
-    <span class="inline-block mt-4 px-4 py-2 bg-accent text-cream rounded-full text-sm">accent color</span>
+
+  <!-- Hero -->
+  <section class="px-6 pt-20 pb-16 max-w-5xl mx-auto">
+    <div class="flex flex-col gap-6">
+      <!-- Tag métier -->
+      <div class="flex items-center gap-2">
+        <span class="w-8 h-px bg-accent"></span>
+        <span class="text-sm font-body text-accent font-medium tracking-wide uppercase">Artiste 3D & Illustrateur</span>
+      </div>
+
+      <!-- Titre principal -->
+      <h1 class="font-display text-[clamp(3rem,8vw,6rem)] font-bold leading-[1.0] tracking-tight text-ink">
+        Personnages.<br />
+        <span class="text-accent">Mondes.</span><br />
+        Outils.
+      </h1>
+
+      <!-- Sous-titre -->
+      <p class="font-body text-lg text-ink/60 max-w-md leading-relaxed">
+        Je crée des univers stylisés, des jeux, des outils Blender et des apps.
+        Basé à Bordeaux, en télétravail pour le monde.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap gap-3 pt-2">
+        <a
+          href="/projects"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-ink text-cream font-body font-medium rounded-full hover:bg-accent transition-colors duration-300 text-sm"
+        >
+          Voir les projets
+        </a>
+        <a
+          href="https://artstation.com/adriflex"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 border border-ink/20 text-ink font-body font-medium rounded-full hover:border-accent hover:text-accent transition-colors duration-300 text-sm"
+        >
+          ArtStation ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Séparateur -->
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="h-px bg-ink/8"></div>
   </div>
+
+  <!-- Projets mis en avant -->
+  <section class="px-6 py-14 max-w-5xl mx-auto">
+    <div class="flex justify-between items-baseline mb-8">
+      <h2 class="font-display text-2xl font-bold">Projets</h2>
+      <a href="/projects" class="text-sm font-body text-ink/50 hover:text-accent transition-colors duration-200">
+        Tout voir →
+      </a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {displayProjects.map(p => (
+        <ProjectCard
+          title={p.data.title}
+          description={p.data.description}
+          slug={toSlug(p.id)}
+          color={p.data.color}
+          tags={p.data.tags}
+          featured={p.data.featured}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Séparateur -->
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="h-px bg-ink/8"></div>
+  </div>
+
+  <!-- Lab -->
+  {recentLab.length > 0 && (
+    <section class="px-6 py-14 max-w-5xl mx-auto">
+      <div class="flex justify-between items-baseline mb-8">
+        <h2 class="font-display text-2xl font-bold">Lab</h2>
+        <a href="/lab" class="text-sm font-body text-ink/50 hover:text-accent transition-colors duration-200">
+          Tout voir →
+        </a>
+      </div>
+      <ul>
+        {recentLab.map((post, i) => (
+          <li class={i < recentLab.length - 1 ? 'border-b border-ink/8' : ''}>
+            <a
+              href={`/lab/${toSlug(post.id)}`}
+              class="flex justify-between items-center py-4 group hover:text-accent transition-colors duration-200"
+            >
+              <span class="font-body font-medium group-hover:underline underline-offset-4 decoration-accent">
+                {post.data.title}
+              </span>
+              <span class="text-sm font-body text-ink/40 shrink-0 ml-4 group-hover:text-accent transition-colors duration-200">
+                {new Date(post.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
 </Base>
