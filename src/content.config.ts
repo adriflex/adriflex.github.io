@@ -10,6 +10,8 @@ const projects = defineCollection({
     cover: z.string().optional(),
     featured: z.boolean().default(false),
     link: z.string().optional(),
+    pdf: z.string().optional(),
+    pdfDownload: z.string().optional(),
     status: z.enum(['published', 'wip', 'archived']).default('published'),
     color: z.string().default('#f0a500'),
   }),
