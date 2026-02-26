@@ -21,3 +21,7 @@ Quelques détails qui m'ont plu à construire :
 Le tout tourne sur Blender 5.0. Les modèles disponibles par défaut : FLUX Schnell, FLUX Dev, FLUX 1.1 Pro, SDXL, Claude Haiku pour le texte.
 
 Version 0.1.0 — prototype fonctionnel, sortie publique à venir.
+
+---
+
+![Architecture du node graph](/images/ai-nodes-schema.png)
