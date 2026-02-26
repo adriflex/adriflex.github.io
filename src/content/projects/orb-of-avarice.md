@@ -7,6 +7,7 @@ featured: true
 color: "#c0392b"
 link: "https://adriflex.itch.io/orb-of-avarice"
 status: published
+cover: "/images/orb-of-avarice.png"
 ---
 
 **Orb of Avarice** est un mini-jeu de donjon isométrique créé avec Godot Engine.
