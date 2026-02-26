@@ -22,21 +22,21 @@ const { Content } = await entry.render();
       ← Projects
     </a>
 
-    <!-- Zone visuelle colorée -->
+    <!-- Zone visuelle -->
     <div
-      class="h-56 rounded-2xl mb-8 flex items-center justify-center relative overflow-hidden"
+      class="h-56 rounded-2xl mb-8 relative overflow-hidden flex items-center justify-center"
       style={`background-color: color-mix(in srgb, ${entry.data.color} 15%, var(--color-cream));`}
     >
-      <div
-        class="absolute w-40 h-40 rounded-full opacity-15"
-        style={`background: ${entry.data.color};`}
-      ></div>
-      <span
-        class="relative font-display text-7xl font-bold opacity-25 select-none"
-        style={`color: ${entry.data.color};`}
-      >
-        {entry.data.title.charAt(0)}
-      </span>
+      {entry.data.cover ? (
+        <img src={entry.data.cover} alt={entry.data.title} class="w-full h-full object-cover" />
+      ) : (
+        <>
+          <div class="absolute w-40 h-40 rounded-full opacity-15" style={`background: ${entry.data.color};`}></div>
+          <span class="relative font-display text-7xl font-bold opacity-25 select-none" style={`color: ${entry.data.color};`}>
+            {entry.data.title.charAt(0)}
+          </span>
+        </>
+      )}
     </div>
 
     <!-- Tags -->
