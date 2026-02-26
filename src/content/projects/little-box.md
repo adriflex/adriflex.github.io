@@ -3,11 +3,10 @@ title: "Little Box"
 description: "BD de 10 pages. Satire noire sur le logement moderne — ton appartement intelligent devient ton pire ennemi."
 date: 2025-04-18
 tags: [bd, illustration, humour noir]
-featured: false
+featured: true
 color: "#4A90D9"
 cover: "/images/little-box-cover.png"
 status: published
-pdf: "https://drive.google.com/file/d/1rVBTVODRBoeFqjswrUtQWh1_8EJ8-iUf/preview"
 pdfDownload: "https://drive.google.com/uc?id=1rVBTVODRBoeFqjswrUtQWh1_8EJ8-iUf&export=download"
 ---
 
