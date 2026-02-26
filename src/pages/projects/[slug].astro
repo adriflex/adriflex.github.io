@@ -29,7 +29,7 @@ const { Content } = await entry.render();
       style={`background-color: color-mix(in srgb, ${entry.data.color} 15%, var(--color-cream));`}
     >
       {entry.data.cover ? (
-        <img src={entry.data.cover} alt={entry.data.title} class="w-full h-full object-cover" />
+        <img src={entry.data.cover} alt={entry.data.title} class="w-full h-full object-cover lightbox-trigger cursor-zoom-in" />
       ) : (
         <>
           <div class="absolute w-40 h-40 rounded-full opacity-15" style={`background: ${entry.data.color};`}></div>

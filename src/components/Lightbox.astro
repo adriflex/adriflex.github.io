@@ -107,7 +107,7 @@
 
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
-    if (target.matches('.prose img')) {
+    if (target.matches('.prose img, img.lightbox-trigger')) {
       openLightbox((target as HTMLImageElement).src, target.getAttribute('alt') ?? '');
     }
   });
