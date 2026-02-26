@@ -1,0 +1,123 @@
+---
+// Aucune prop nécessaire
+---
+
+<div id="lightbox" aria-hidden="true">
+  <div id="lightbox-backdrop"></div>
+  <button id="lightbox-close" aria-label="Fermer">×</button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
+<style>
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10000; /* au-dessus du grain (z-index: 9999 dans global.css) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms ease;
+  }
+
+  #lightbox.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(26, 22, 20, 0.92);
+    cursor: zoom-out;
+  }
+
+  #lightbox-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid rgba(245, 239, 227, 0.2);
+    background: transparent;
+    color: rgba(245, 239, 227, 0.7);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 200ms ease, border-color 200ms ease;
+    z-index: 1;
+  }
+
+  #lightbox-close:hover {
+    color: #E8622A;
+    border-color: #E8622A;
+  }
+
+  #lightbox-img {
+    position: relative;
+    z-index: 1;
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 250ms ease, transform 250ms ease;
+  }
+
+  #lightbox.is-open #lightbox-img {
+    opacity: 1;
+    transform: scale(1);
+  }
+</style>
+
+<script>
+  const lightbox = document.getElementById('lightbox') as HTMLElement;
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxClose = document.getElementById('lightbox-close') as HTMLElement;
+  const lightboxBackdrop = document.getElementById('lightbox-backdrop') as HTMLElement;
+
+  if (!lightbox || !lightboxImg || !lightboxClose || !lightboxBackdrop) {
+    throw new Error('Lightbox: éléments DOM introuvables');
+  }
+
+  let previousFocus: HTMLElement | null = null;
+
+  function openLightbox(src: string, alt: string) {
+    previousFocus = document.activeElement as HTMLElement;
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lightboxClose.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    previousFocus?.focus();
+  }
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.matches('.prose img')) {
+      openLightbox((target as HTMLImageElement).src, target.getAttribute('alt') ?? '');
+    }
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxBackdrop.addEventListener('click', closeLightbox);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) {
+      closeLightbox();
+    }
+  });
+</script>

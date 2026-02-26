@@ -46,3 +46,8 @@ body::before {
 ::-webkit-scrollbar-thumb:hover {
   background: color-mix(in srgb, var(--color-ink) 35%, transparent);
 }
+
+/* Curseur zoom sur les images dans le contenu Markdown */
+.prose img {
+  cursor: zoom-in;
+}

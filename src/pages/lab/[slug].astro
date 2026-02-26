@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import Lightbox from '../../components/Lightbox.astro';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -55,4 +56,5 @@ const { Content } = await entry.render();
     </div>
 
   </article>
+  <Lightbox />
 </Base>
