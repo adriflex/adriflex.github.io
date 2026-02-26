@@ -2,7 +2,7 @@
 title: "IA Nodes — un node graph IA dans Blender"
 date: 2026-02-26
 tags: [blender, addon, ia, workflow]
-cover: "/images/ai-nodes-cover.png"
+cover: "/images/ai-nodes-screenshot.png"
 ---
 
 L'idée de départ : composer des pipelines de génération IA visuellement, sans quitter Blender. Pas en bricolant des scripts Python à la main — en connectant des nœuds, comme on le fait déjà pour les matériaux ou le compositing.
