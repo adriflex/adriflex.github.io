@@ -19,22 +19,22 @@ Première étape : générer les character sheets via Replicate. Style prompt fi
 
 ![Kesh — Character sheet généré par IA](/images/kesh-modelsheet.png)
 
-Mais la silhouette manque de caractère. Trop compact, trop symétrique, trop générique pour un personnage qui doit se lire au premier regard.
-
 ---
 
-C'est là que commence le vrai travail de direction artistique.
-
-![Kesh — Notes de retouche](/images/kesh-retouches.png)
-
-Avant/après sur la silhouette : torso allongé, jambes raccourcies, oreilles affinées, asymétrie organique dans les bras. Ces ajustements ne s'inventent pas — ils se voient quand on compare les silhouettes côte à côte. L'IA génère, moi je dirige.
-
----
-
-La modélisation suit directement le concept corrigé. Low poly, matériaux procéduraux, palette restreinte.
+De là, je passe directement en modélisation. Low poly, matériaux procéduraux, palette restreinte. KESH commence à exister en 3D.
 
 ![Kesh — Low poly Blender](/images/kesh-preview.png)
 
-Le pipeline fonctionne. KESH est reconnaissable depuis le premier concept jusqu'au mesh final. Les proportions tiennent. Les yeux luisent. Le pagne est là.
+Le mesh est là. Le personnage est reconnaissable. Mais un modèle, ça s'évalue différemment qu'un concept — les volumes se lisent autrement, les proportions révèlent leurs défauts sous la lumière.
 
-Prochaine étape : le bake via Kiln, l'export GLB, et l'intégration dans Godot — KESH qui marche dans Ashenmoor. Proof of concept.
+---
+
+C'est là qu'intervient une passe de direction artistique sur le modèle — comme un concept artist qui repasse derrière la 3D.
+
+![Kesh — Notes de retouche sur le modèle](/images/kesh-retouches.png)
+
+Avant/après sur la silhouette : torso à allonger, jambes à raccourcir, oreilles à affiner, asymétrie organique à introduire dans les bras. Ces ajustements ne s'inventent pas — ils se voient quand on compare les silhouettes côte à côte.
+
+---
+
+Les re-takes du modèle sont la prochaine étape, en parallèle du travail sur les matériaux. De l'autre côté : envoyer KESH dans Godot et commencer le prototype — une scène, un personnage qui marche, la preuve que le pipeline tient de bout en bout.
