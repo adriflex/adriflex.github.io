@@ -2,47 +2,71 @@
 import Base from '../layouts/Base.astro';
 ---
 <Base title="About" description="Adrien Rouquié — artiste 3D, illustrateur et créateur de mondes imaginaires, basé à Bordeaux.">
-  <section class="px-6 py-16 max-w-2xl mx-auto">
+  <section class="px-6 py-10 max-w-5xl mx-auto">
 
-    <!-- En-tête -->
-    <div class="mb-12">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="w-8 h-px bg-accent"></span>
-        <span class="text-sm font-body text-accent font-medium tracking-wide uppercase">À propos</span>
-      </div>
-      <div class="flex items-center gap-6 mb-2">
-        <img
-          src="/images/avatar.jpg"
-          alt="Adrien Rouquié"
-          class="w-20 h-20 rounded-full object-cover border-2 border-ink/10 shrink-0"
-        />
-        <h1 class="font-display text-5xl font-bold text-ink">Adrien Rouquié</h1>
-      </div>
+    <!-- Tag -->
+    <div class="flex items-center gap-2 mb-8">
+      <span class="w-8 h-px bg-accent"></span>
+      <span class="text-sm font-body text-accent font-medium tracking-wide uppercase">À propos</span>
     </div>
 
-    <!-- Layout 2 colonnes : texte gauche + image droite -->
-    <div class="flex flex-col md:flex-row gap-10 md:gap-16 mb-12">
+    <!-- Layout 2 colonnes : contenu gauche + image droite -->
+    <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
 
-      <!-- Colonne gauche : bio -->
-      <div class="flex-1 space-y-5">
-        <p class="font-body text-lg text-ink/80 leading-relaxed">
-          Artiste 3D &amp; illustrateur basé à Bordeaux. Spécialisé en personnages et mondes imaginaires —
-          style stylisé, humoristique, coloré.
-        </p>
-        <p class="font-body text-ink/65 leading-relaxed">
-          Formation Supinfocom Arles (Mopa) et École Estienne. J'ai travaillé comme Character Artist
-          chez <strong class="text-ink font-medium">Passion Pictures</strong> (Londres), CG Supervisor sur
-          <em>Tchoupi à la campagne</em>, et actuellement Artiste 3D chez
-          <strong class="text-ink font-medium">Golden Wolf</strong>.
-        </p>
-        <p class="font-body text-ink/65 leading-relaxed">
-          En parallèle je crée des projets perso : jeux (Godot), outils (Blender), apps web, BD.
-          Ce site en est la vitrine.
-        </p>
+      <!-- Colonne gauche : nom + bio + liens -->
+      <div class="flex-1 min-w-0">
+        <h1 class="font-display text-4xl font-bold text-ink mb-6">Adrien Rouquié</h1>
+
+        <div class="space-y-4 mb-8">
+          <p class="font-body text-base text-ink/80 leading-relaxed">
+            Artiste 3D &amp; illustrateur basé à Bordeaux. Spécialisé en personnages et mondes imaginaires —
+            style stylisé, humoristique, coloré.
+          </p>
+          <p class="font-body text-sm text-ink/65 leading-relaxed">
+            Formation Supinfocom Arles (Mopa) et École Estienne. J'ai travaillé comme Character Artist
+            chez <strong class="text-ink font-medium">Passion Pictures</strong> (Londres), CG Supervisor sur
+            <em>Tchoupi à la campagne</em>, et actuellement Artiste 3D chez
+            <strong class="text-ink font-medium">Golden Wolf</strong>.
+          </p>
+          <p class="font-body text-sm text-ink/65 leading-relaxed">
+            En parallèle je crée des projets perso : jeux (Godot), outils (Blender), apps web, BD.
+            Ce site en est la vitrine.
+          </p>
+        </div>
+
+        <!-- Séparateur -->
+        <div class="h-px bg-ink/8 mb-6"></div>
+
+        <!-- Liens -->
+        <h2 class="font-display text-sm font-bold mb-4 text-ink uppercase tracking-wide">Me trouver</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {[
+            { label: 'ArtStation', sub: 'Travaux 3D professionnels', href: 'https://artstation.com/adriflex', external: true },
+            { label: 'Instagram', sub: 'Illustrations & updates', href: 'https://instagram.com/adrien.flex', external: true },
+            { label: 'LinkedIn', sub: 'Parcours professionnel', href: 'https://linkedin.com/in/adrienrouquie', external: true },
+          ].map(link => (
+            <a
+              href={link.href}
+              target={link.external ? '_blank' : undefined}
+              rel={link.external ? 'noopener noreferrer' : undefined}
+              class="flex items-center justify-between p-4 rounded-xl border border-ink/10 hover:border-accent hover:text-accent transition-all duration-200 group"
+            >
+              <div>
+                <span class="font-body font-medium text-ink group-hover:text-accent transition-colors duration-200 block">
+                  {link.label}
+                </span>
+                <span class="text-xs font-body text-ink/40 mt-0.5 block">{link.sub}</span>
+              </div>
+              <span class="text-ink/30 group-hover:text-accent transition-colors duration-200 text-sm">
+                {link.external ? '↗' : '→'}
+              </span>
+            </a>
+          ))}
+        </div>
       </div>
 
       <!-- Colonne droite : grille de travaux -->
-      <div class="md:w-72 shrink-0">
+      <div class="md:w-[400px] shrink-0">
         <img
           src="/images/artistvsart.png"
           alt="Travaux d'Adrien Rouquié — personnages 3D et illustrations"
@@ -50,36 +74,6 @@ import Base from '../layouts/Base.astro';
         />
       </div>
 
-    </div>
-
-    <!-- Séparateur -->
-    <div class="h-px bg-ink/8 mb-12"></div>
-
-    <!-- Liens -->
-    <h2 class="font-display text-xl font-bold mb-6 text-ink">Me trouver</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      {[
-        { label: 'ArtStation', sub: 'Travaux 3D professionnels', href: 'https://artstation.com/adriflex', external: true },
-        { label: 'Instagram', sub: 'Illustrations & updates', href: 'https://instagram.com/adrien.flex', external: true },
-        { label: 'LinkedIn', sub: 'Parcours professionnel', href: 'https://linkedin.com/in/adrienrouquie', external: true },
-      ].map(link => (
-        <a
-          href={link.href}
-          target={link.external ? '_blank' : undefined}
-          rel={link.external ? 'noopener noreferrer' : undefined}
-          class="flex items-center justify-between p-4 rounded-xl border border-ink/10 hover:border-accent hover:text-accent transition-all duration-200 group"
-        >
-          <div>
-            <span class="font-body font-medium text-ink group-hover:text-accent transition-colors duration-200 block">
-              {link.label}
-            </span>
-            <span class="text-xs font-body text-ink/40 mt-0.5 block">{link.sub}</span>
-          </div>
-          <span class="text-ink/30 group-hover:text-accent transition-colors duration-200 text-sm">
-            {link.external ? '↗' : '→'}
-          </span>
-        </a>
-      ))}
     </div>
 
   </section>

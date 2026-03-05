@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Lightbox from '../components/Lightbox.astro';
 
 interface Props {
   title: string;
@@ -59,6 +60,8 @@ const canonicalTitle = title === "Accueil" ? "Adrien Rouquié" : `${title} — A
     <main class="flex-1">
       <slot />
     </main>
+
+    <Lightbox />
 
     <!-- Footer -->
     <footer class="border-t border-ink/8 px-6 py-8 mt-16">

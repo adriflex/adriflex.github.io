@@ -10,7 +10,7 @@ const allLab = await getCollection('lab');
 const toSlug = (id: string) => id.replace(/\.md$/, '');
 
 const publishedProjects = allProjects
-  .filter(p => p.data.status === 'published')
+  .filter(p => p.data.status !== 'archived')
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const allLabSorted = allLab
@@ -31,7 +31,7 @@ const allLabSorted = allLab
         </div>
 
         <!-- Titre principal -->
-        <h1 class="font-display text-[clamp(3rem,8vw,6rem)] font-bold leading-[1.0] tracking-tight text-ink">
+        <h1 class="font-display text-[clamp(2rem,4vw,3.75rem)] font-bold leading-[1.05] tracking-tight text-ink">
           Personnages.<br />
           <span class="text-accent">Mondes.</span><br />
           Outils.
@@ -63,25 +63,31 @@ const allLabSorted = allLab
       </div>
 
       <!-- Grille 3 images asymétrique -->
-      <div class="grid grid-cols-[3fr_2fr] grid-rows-2 gap-2 h-80 md:w-96 w-full shrink-0">
+      <div class="grid grid-cols-[3fr_2fr] grid-rows-2 gap-2 h-[460px] md:w-[500px] w-full shrink-0">
         <!-- Illustration pleine hauteur (colonne gauche, 2 lignes) -->
-        <img
-          src="/images/hero-illustration.png"
-          alt="Illustration — oiseau survolant une ville"
-          class="row-span-2 w-full h-full object-cover rounded-xl border border-ink/8"
-        />
+        <div class="row-span-2 overflow-hidden rounded-xl border border-ink/8 group cursor-zoom-in">
+          <img
+            src="/images/hero-illustration.png"
+            alt="Illustration — oiseau survolant une ville"
+            class="lightbox-trigger w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        </div>
         <!-- Personnage 3D (colonne droite, ligne 1) -->
-        <img
-          src="/images/hero-3d.jpg"
-          alt="Personnage 3D stylisé — archère au chignon"
-          class="w-full h-full object-cover rounded-xl border border-ink/8"
-        />
+        <div class="overflow-hidden rounded-xl border border-ink/8 group cursor-zoom-in">
+          <img
+            src="/images/hero-3d.jpg"
+            alt="Personnage 3D stylisé — archère au chignon"
+            class="lightbox-trigger w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        </div>
         <!-- Orb of Avarice (colonne droite, ligne 2) -->
-        <img
-          src="/images/hero-game.png"
-          alt="Orb of Avarice — jeu vidéo isométrique"
-          class="w-full h-full object-cover rounded-xl border border-ink/8"
-        />
+        <div class="overflow-hidden rounded-xl border border-ink/8 group cursor-zoom-in">
+          <img
+            src="/images/hero-game.png"
+            alt="Orb of Avarice — jeu vidéo isométrique"
+            class="lightbox-trigger w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        </div>
       </div>
 
     </div>
@@ -94,11 +100,8 @@ const allLabSorted = allLab
 
   <!-- Projets mis en avant -->
   <section class="px-6 py-14 max-w-5xl mx-auto">
-    <div class="flex justify-between items-baseline mb-8">
+    <div class="mb-8">
       <h2 class="font-display text-2xl font-bold">Projets</h2>
-      <a href="/projects" class="text-sm font-body text-ink/50 hover:text-accent transition-colors duration-200">
-        Tout voir →
-      </a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {publishedProjects.map(p => (
@@ -122,11 +125,8 @@ const allLabSorted = allLab
 
   <!-- Lab -->
   <section class="px-6 py-14 max-w-5xl mx-auto">
-    <div class="flex justify-between items-baseline mb-8">
+    <div class="mb-8">
       <h2 class="font-display text-2xl font-bold">Lab</h2>
-      <a href="/lab" class="text-sm font-body text-ink/50 hover:text-accent transition-colors duration-200">
-        Tout voir →
-      </a>
     </div>
     <ul>
       {allLabSorted.map((post, i) => (
@@ -152,7 +152,7 @@ const allLabSorted = allLab
                 <img
                   src={post.data.cover}
                   alt={post.data.title}
-                  class="w-16 h-10 object-cover rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-200"
+                  class="w-20 h-14 object-cover rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-200"
                 />
               )}
               <span class="text-sm font-body text-ink/40 mt-0.5 group-hover:text-accent transition-colors duration-200">
