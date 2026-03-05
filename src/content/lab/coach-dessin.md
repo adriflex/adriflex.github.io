@@ -2,6 +2,7 @@
 title: "Coach Dessin"
 date: 2025-12-01
 tags: [web-app, dessin, gamification]
+cover: /images/lab-coach-dessin.png
 ---
 
 **Coach Dessin** est une app web HTML/JS auto-contenue, gamifiée, avec un Maître de Jeu IA personnalisé.
