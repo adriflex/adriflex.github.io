@@ -4,17 +4,18 @@ import Base from '../layouts/Base.astro';
 <Base title="About" description="Adrien Rouquié — artiste 3D, illustrateur et créateur de mondes imaginaires, basé à Bordeaux.">
   <section class="px-6 py-10 max-w-5xl mx-auto">
 
-    <!-- Tag -->
-    <div class="flex items-center gap-2 mb-8">
-      <span class="w-8 h-px bg-accent"></span>
-      <span class="text-sm font-body text-accent font-medium tracking-wide uppercase">À propos</span>
-    </div>
-
     <!-- Layout 2 colonnes : contenu gauche + image droite -->
     <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
 
-      <!-- Colonne gauche : nom + bio + liens -->
+      <!-- Colonne gauche : tag + nom + bio + liens -->
       <div class="flex-1 min-w-0">
+
+        <!-- Tag -->
+        <div class="flex items-center gap-2 mb-5">
+          <span class="w-8 h-px bg-accent"></span>
+          <span class="text-sm font-body text-accent font-medium tracking-wide uppercase">À propos</span>
+        </div>
+
         <h1 class="font-display text-4xl font-bold text-ink mb-6">Adrien Rouquié</h1>
 
         <div class="space-y-4 mb-8">
@@ -22,13 +23,13 @@ import Base from '../layouts/Base.astro';
             Artiste 3D &amp; illustrateur basé à Bordeaux. Spécialisé en personnages et mondes imaginaires —
             style stylisé, humoristique, coloré.
           </p>
-          <p class="font-body text-sm text-ink/65 leading-relaxed">
+          <p class="font-body text-base text-ink/65 leading-relaxed">
             Formation Supinfocom Arles (Mopa) et École Estienne. J'ai travaillé comme Character Artist
             chez <strong class="text-ink font-medium">Passion Pictures</strong> (Londres), CG Supervisor sur
             <em>Tchoupi à la campagne</em>, et actuellement Artiste 3D chez
             <strong class="text-ink font-medium">Golden Wolf</strong>.
           </p>
-          <p class="font-body text-sm text-ink/65 leading-relaxed">
+          <p class="font-body text-base text-ink/65 leading-relaxed">
             En parallèle je crée des projets perso : jeux (Godot), outils (Blender), apps web, BD.
             Ce site en est la vitrine.
           </p>
@@ -37,13 +38,13 @@ import Base from '../layouts/Base.astro';
         <!-- Séparateur -->
         <div class="h-px bg-ink/8 mb-6"></div>
 
-        <!-- Liens avec aperçu image -->
+        <!-- Liens avec aperçu profil -->
         <h2 class="font-display text-sm font-bold mb-4 text-ink uppercase tracking-wide">Me trouver</h2>
         <div class="grid grid-cols-3 gap-3">
           {[
-            { label: 'ArtStation', sub: 'Travaux 3D', href: 'https://artstation.com/adriflex', img: '/images/hero-3d.jpg' },
-            { label: 'Instagram', sub: 'Illustrations', href: 'https://instagram.com/adrien.flex', img: '/images/hero-illustration.png' },
-            { label: 'LinkedIn', sub: 'Parcours pro', href: 'https://linkedin.com/in/adrienrouquie', img: '/images/avatar.jpg' },
+            { label: 'ArtStation', sub: '56 artworks', href: 'https://artstation.com/adriflex', img: '/images/card-artstation.png', pos: 'object-[center_35%]' },
+            { label: 'Instagram', sub: '309 followers', href: 'https://instagram.com/adrien.flex', img: '/images/card-instagram.png', pos: 'object-[center_40%]' },
+            { label: 'LinkedIn', sub: '1k abonnés', href: 'https://linkedin.com/in/adrienrouquie', img: '/images/card-linkedin.png', pos: 'object-top' },
           ].map(link => (
             <a
               href={link.href}
@@ -54,9 +55,9 @@ import Base from '../layouts/Base.astro';
               <img
                 src={link.img}
                 alt={link.label}
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                class={`absolute inset-0 w-full h-full object-cover ${link.pos} group-hover:scale-110 transition-transform duration-700`}
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/30 to-transparent group-hover:from-ink/70 transition-colors duration-300"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-transparent group-hover:from-ink/70 transition-colors duration-300"></div>
               <div class="relative z-10 p-3">
                 <span class="font-body font-medium text-cream block text-sm leading-tight">{link.label} ↗</span>
                 <span class="text-xs text-cream/60">{link.sub}</span>
@@ -64,6 +65,7 @@ import Base from '../layouts/Base.astro';
             </a>
           ))}
         </div>
+
       </div>
 
       <!-- Colonne droite : grille de travaux -->
