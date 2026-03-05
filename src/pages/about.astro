@@ -20,22 +20,36 @@ import Base from '../layouts/Base.astro';
       </div>
     </div>
 
-    <!-- Bio -->
-    <div class="space-y-5 mb-12">
-      <p class="font-body text-lg text-ink/80 leading-relaxed">
-        Artiste 3D &amp; illustrateur basé à Bordeaux. Spécialisé en personnages et mondes imaginaires —
-        style stylisé, humoristique, coloré.
-      </p>
-      <p class="font-body text-ink/65 leading-relaxed">
-        Formation Supinfocom Arles (Mopa) et École Estienne. J'ai travaillé comme Character Artist
-        chez <strong class="text-ink font-medium">Passion Pictures</strong> (Londres), CG Supervisor sur
-        <em>Tchoupi à la campagne</em>, et actuellement Artiste 3D chez
-        <strong class="text-ink font-medium">Golden Wolf</strong>.
-      </p>
-      <p class="font-body text-ink/65 leading-relaxed">
-        En parallèle je crée des projets perso : jeux (Godot), outils (Blender), apps web, BD.
-        Ce site en est la vitrine.
-      </p>
+    <!-- Layout 2 colonnes : texte gauche + image droite -->
+    <div class="flex flex-col md:flex-row gap-10 md:gap-16 mb-12">
+
+      <!-- Colonne gauche : bio -->
+      <div class="flex-1 space-y-5">
+        <p class="font-body text-lg text-ink/80 leading-relaxed">
+          Artiste 3D &amp; illustrateur basé à Bordeaux. Spécialisé en personnages et mondes imaginaires —
+          style stylisé, humoristique, coloré.
+        </p>
+        <p class="font-body text-ink/65 leading-relaxed">
+          Formation Supinfocom Arles (Mopa) et École Estienne. J'ai travaillé comme Character Artist
+          chez <strong class="text-ink font-medium">Passion Pictures</strong> (Londres), CG Supervisor sur
+          <em>Tchoupi à la campagne</em>, et actuellement Artiste 3D chez
+          <strong class="text-ink font-medium">Golden Wolf</strong>.
+        </p>
+        <p class="font-body text-ink/65 leading-relaxed">
+          En parallèle je crée des projets perso : jeux (Godot), outils (Blender), apps web, BD.
+          Ce site en est la vitrine.
+        </p>
+      </div>
+
+      <!-- Colonne droite : grille de travaux -->
+      <div class="md:w-72 shrink-0">
+        <img
+          src="/images/artistvsart.png"
+          alt="Travaux d'Adrien Rouquié — personnages 3D et illustrations"
+          class="w-full rounded-2xl border border-ink/8"
+        />
+      </div>
+
     </div>
 
     <!-- Séparateur -->
