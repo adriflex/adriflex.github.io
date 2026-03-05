@@ -37,29 +37,30 @@ import Base from '../layouts/Base.astro';
         <!-- Séparateur -->
         <div class="h-px bg-ink/8 mb-6"></div>
 
-        <!-- Liens -->
+        <!-- Liens avec aperçu image -->
         <h2 class="font-display text-sm font-bold mb-4 text-ink uppercase tracking-wide">Me trouver</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="grid grid-cols-3 gap-3">
           {[
-            { label: 'ArtStation', sub: 'Travaux 3D professionnels', href: 'https://artstation.com/adriflex', external: true },
-            { label: 'Instagram', sub: 'Illustrations & updates', href: 'https://instagram.com/adrien.flex', external: true },
-            { label: 'LinkedIn', sub: 'Parcours professionnel', href: 'https://linkedin.com/in/adrienrouquie', external: true },
+            { label: 'ArtStation', sub: 'Travaux 3D', href: 'https://artstation.com/adriflex', img: '/images/hero-3d.jpg' },
+            { label: 'Instagram', sub: 'Illustrations', href: 'https://instagram.com/adrien.flex', img: '/images/hero-illustration.png' },
+            { label: 'LinkedIn', sub: 'Parcours pro', href: 'https://linkedin.com/in/adrienrouquie', img: '/images/avatar.jpg' },
           ].map(link => (
             <a
               href={link.href}
-              target={link.external ? '_blank' : undefined}
-              rel={link.external ? 'noopener noreferrer' : undefined}
-              class="flex items-center justify-between p-4 rounded-xl border border-ink/10 hover:border-accent hover:text-accent transition-all duration-200 group"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="relative group overflow-hidden rounded-xl h-28 flex flex-col justify-end"
             >
-              <div>
-                <span class="font-body font-medium text-ink group-hover:text-accent transition-colors duration-200 block">
-                  {link.label}
-                </span>
-                <span class="text-xs font-body text-ink/40 mt-0.5 block">{link.sub}</span>
+              <img
+                src={link.img}
+                alt={link.label}
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/30 to-transparent group-hover:from-ink/70 transition-colors duration-300"></div>
+              <div class="relative z-10 p-3">
+                <span class="font-body font-medium text-cream block text-sm leading-tight">{link.label} ↗</span>
+                <span class="text-xs text-cream/60">{link.sub}</span>
               </div>
-              <span class="text-ink/30 group-hover:text-accent transition-colors duration-200 text-sm">
-                {link.external ? '↗' : '→'}
-              </span>
             </a>
           ))}
         </div>
