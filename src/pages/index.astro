@@ -20,43 +20,70 @@ const allLabSorted = allLab
 
   <!-- Hero -->
   <section class="px-6 pt-20 pb-16 max-w-5xl mx-auto">
-    <div class="flex flex-col gap-6">
-      <!-- Tag métier -->
-      <div class="flex items-center gap-2">
-        <span class="w-8 h-px bg-accent"></span>
-        <span class="text-sm font-body text-accent font-medium tracking-wide uppercase">Artiste 3D & Illustrateur</span>
+    <div class="flex flex-col md:flex-row items-center gap-12">
+
+      <!-- Texte -->
+      <div class="flex flex-col gap-6 flex-1">
+        <!-- Tag métier -->
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-px bg-accent"></span>
+          <span class="text-sm font-body text-accent font-medium tracking-wide uppercase">Artiste 3D & Illustrateur</span>
+        </div>
+
+        <!-- Titre principal -->
+        <h1 class="font-display text-[clamp(3rem,8vw,6rem)] font-bold leading-[1.0] tracking-tight text-ink">
+          Personnages.<br />
+          <span class="text-accent">Mondes.</span><br />
+          Outils.
+        </h1>
+
+        <!-- Sous-titre -->
+        <p class="font-body text-lg text-ink/60 max-w-md leading-relaxed">
+          Je crée des univers stylisés, des jeux, des outils Blender et des apps.
+          Basé à Bordeaux, en télétravail pour le monde.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a
+            href="/projects"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-ink text-cream font-body font-medium rounded-full hover:bg-accent transition-colors duration-300 text-sm"
+          >
+            Voir les projets
+          </a>
+          <a
+            href="https://artstation.com/adriflex"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 border border-ink/20 text-ink font-body font-medium rounded-full hover:border-accent hover:text-accent transition-colors duration-300 text-sm"
+          >
+            ArtStation ↗
+          </a>
+        </div>
       </div>
 
-      <!-- Titre principal -->
-      <h1 class="font-display text-[clamp(3rem,8vw,6rem)] font-bold leading-[1.0] tracking-tight text-ink">
-        Personnages.<br />
-        <span class="text-accent">Mondes.</span><br />
-        Outils.
-      </h1>
-
-      <!-- Sous-titre -->
-      <p class="font-body text-lg text-ink/60 max-w-md leading-relaxed">
-        Je crée des univers stylisés, des jeux, des outils Blender et des apps.
-        Basé à Bordeaux, en télétravail pour le monde.
-      </p>
-
-      <!-- CTAs -->
-      <div class="flex flex-wrap gap-3 pt-2">
-        <a
-          href="/projects"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-ink text-cream font-body font-medium rounded-full hover:bg-accent transition-colors duration-300 text-sm"
-        >
-          Voir les projets
-        </a>
-        <a
-          href="https://artstation.com/adriflex"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-6 py-3 border border-ink/20 text-ink font-body font-medium rounded-full hover:border-accent hover:text-accent transition-colors duration-300 text-sm"
-        >
-          ArtStation ↗
-        </a>
+      <!-- Grille 3 images asymétrique -->
+      <div class="grid grid-cols-[3fr_2fr] grid-rows-2 gap-2 h-80 md:w-96 w-full shrink-0">
+        <!-- Illustration pleine hauteur (colonne gauche, 2 lignes) -->
+        <img
+          src="/images/hero-illustration.png"
+          alt="Illustration — oiseau survolant une ville"
+          class="row-span-2 w-full h-full object-cover rounded-xl border border-ink/8"
+        />
+        <!-- Personnage 3D (colonne droite, ligne 1) -->
+        <img
+          src="/images/hero-3d.jpg"
+          alt="Personnage 3D stylisé — archère au chignon"
+          class="w-full h-full object-cover rounded-xl border border-ink/8"
+        />
+        <!-- Orb of Avarice (colonne droite, ligne 2) -->
+        <img
+          src="/images/hero-game.png"
+          alt="Orb of Avarice — jeu vidéo isométrique"
+          class="w-full h-full object-cover rounded-xl border border-ink/8"
+        />
       </div>
+
     </div>
   </section>
 
