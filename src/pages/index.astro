@@ -9,22 +9,12 @@ const allLab = await getCollection('lab');
 // Astro 5 uses entry.id (e.g. "orb-of-avarice.md") — strip extension for URL slug
 const toSlug = (id: string) => id.replace(/\.md$/, '');
 
-const featuredProjects = allProjects
-  .filter(p => p.data.featured && p.data.status === 'published')
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+const publishedProjects = allProjects
+  .filter(p => p.data.status === 'published')
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-// Fallback : si aucun projet featured, prendre les 3 premiers publiés
-const displayProjects = featuredProjects.length > 0
-  ? featuredProjects
-  : allProjects
-      .filter(p => p.data.status !== 'archived')
-      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-      .slice(0, 3);
-
-const recentLab = allLab
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 4);
+const allLabSorted = allLab
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <Base title="Accueil">
 
@@ -84,7 +74,7 @@ const recentLab = allLab
       </a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {displayProjects.map(p => (
+      {publishedProjects.map(p => (
         <ProjectCard
           title={p.data.title}
           description={p.data.description}
@@ -104,50 +94,48 @@ const recentLab = allLab
   </div>
 
   <!-- Lab -->
-  {recentLab.length > 0 && (
-    <section class="px-6 py-14 max-w-5xl mx-auto">
-      <div class="flex justify-between items-baseline mb-8">
-        <h2 class="font-display text-2xl font-bold">Lab</h2>
-        <a href="/lab" class="text-sm font-body text-ink/50 hover:text-accent transition-colors duration-200">
-          Tout voir →
-        </a>
-      </div>
-      <ul>
-        {recentLab.map((post, i) => (
-          <li class={i < recentLab.length - 1 ? 'border-b border-ink/8' : ''}>
-            <a
-              href={`/lab/${toSlug(post.id)}`}
-              class="flex justify-between items-start gap-4 py-5 group hover:text-accent transition-colors duration-200"
-            >
-              <div class="flex-1 min-w-0">
-                <span class="font-body font-medium group-hover:underline underline-offset-4 decoration-accent block">
-                  {post.data.title}
-                </span>
-                {post.data.tags.length > 0 && (
-                  <div class="flex gap-1.5 mt-1 flex-wrap">
-                    {post.data.tags.map(tag => (
-                      <span class="text-xs text-ink/40 font-body">#{tag}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <div class="flex items-center gap-4 shrink-0">
-                {post.data.cover && (
-                  <img
-                    src={post.data.cover}
-                    alt={post.data.title}
-                    class="w-16 h-10 object-cover rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-200"
-                  />
-                )}
-                <span class="text-sm font-body text-ink/40 mt-0.5 group-hover:text-accent transition-colors duration-200">
-                  {new Date(post.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })}
-                </span>
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )}
+  <section class="px-6 py-14 max-w-5xl mx-auto">
+    <div class="flex justify-between items-baseline mb-8">
+      <h2 class="font-display text-2xl font-bold">Lab</h2>
+      <a href="/lab" class="text-sm font-body text-ink/50 hover:text-accent transition-colors duration-200">
+        Tout voir →
+      </a>
+    </div>
+    <ul>
+      {allLabSorted.map((post, i) => (
+        <li class={i < allLabSorted.length - 1 ? 'border-b border-ink/8' : ''}>
+          <a
+            href={`/lab/${toSlug(post.id)}`}
+            class="flex justify-between items-start gap-4 py-5 group hover:text-accent transition-colors duration-200"
+          >
+            <div class="flex-1 min-w-0">
+              <span class="font-body font-medium group-hover:underline underline-offset-4 decoration-accent block">
+                {post.data.title}
+              </span>
+              {post.data.tags.length > 0 && (
+                <div class="flex gap-1.5 mt-1 flex-wrap">
+                  {post.data.tags.map(tag => (
+                    <span class="text-xs text-ink/40 font-body">#{tag}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div class="flex items-center gap-4 shrink-0">
+              {post.data.cover && (
+                <img
+                  src={post.data.cover}
+                  alt={post.data.title}
+                  class="w-16 h-10 object-cover rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-200"
+                />
+              )}
+              <span class="text-sm font-body text-ink/40 mt-0.5 group-hover:text-accent transition-colors duration-200">
+                {new Date(post.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })}
+              </span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
 
 </Base>
