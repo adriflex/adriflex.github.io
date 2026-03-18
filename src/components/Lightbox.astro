@@ -29,7 +29,8 @@
   #lightbox-backdrop {
     position: absolute;
     inset: 0;
-    background-color: rgba(26, 22, 20, 0.92);
+    background-color: rgba(254, 246, 228, 0.55);
+    mix-blend-mode: multiply;
     cursor: zoom-out;
   }
 
@@ -39,10 +40,10 @@
     right: 1.25rem;
     width: 2.5rem;
     height: 2.5rem;
-    border-radius: 50%;
-    border: 1px solid rgba(245, 239, 227, 0.2);
+    border-radius: 2px;
+    border: 2px solid rgba(0, 24, 88, 0.15);
     background: transparent;
-    color: rgba(245, 239, 227, 0.7);
+    color: rgba(0, 24, 88, 0.4);
     font-size: 1.5rem;
     line-height: 1;
     cursor: pointer;
@@ -54,8 +55,8 @@
   }
 
   #lightbox-close:hover {
-    color: #E8622A;
-    border-color: #E8622A;
+    color: #F582AE;
+    border-color: #F582AE;
   }
 
   #lightbox-img {
@@ -64,7 +65,9 @@
     max-width: 90vw;
     max-height: 90vh;
     object-fit: contain;
-    border-radius: 0.5rem;
+    border-radius: 2px;
+    border: 2px solid #001858;
+    box-shadow: 8px 8px 0 rgba(0, 24, 88, 0.12);
     opacity: 0;
     transform: scale(0.95);
     transition: opacity 250ms ease, transform 250ms ease;

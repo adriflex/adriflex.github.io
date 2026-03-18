@@ -16,45 +16,56 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 <Base title={entry.data.title}>
-  <article class="px-6 py-16 max-w-2xl mx-auto">
+  <article>
+    <div class="max-w-[1120px] mx-auto px-6 md:px-12 py-12">
 
-    <!-- Retour -->
-    <a href="/lab" class="inline-flex items-center gap-2 text-sm font-body text-ink/50 hover:text-accent transition-colors duration-200 mb-10">
-      ← Lab
-    </a>
+      <!-- Retour -->
+      <a href="/" class="inline-flex items-center gap-2 font-display px-font text-[16px] text-pink hover:text-navy hover:-translate-x-1.5 transition-all duration-200 mb-8">
+        ← Retour
+      </a>
 
-    <!-- Date + tags -->
-    <div class="flex items-center gap-3 mb-4">
-      <time class="text-sm font-body text-ink/40">
+      <!-- Cover image — full container width -->
+      {entry.data.cover && (
+        <div class="rounded-[2px] border-2 border-navy overflow-hidden mb-10" style="height: clamp(200px, 30vw, 360px);">
+          <img src={entry.data.cover} alt={entry.data.title} class="w-full h-full object-cover lightbox-trigger cursor-zoom-in" />
+        </div>
+      )}
+
+      <!-- Titre -->
+      <h1 class="font-display px-font text-[32px] font-bold text-navy leading-[1.5] mb-4">{entry.data.title}</h1>
+
+      <!-- Date -->
+      <time class="font-body text-[13px] text-para/40 block mb-4">
         {new Date(entry.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
       </time>
-      {entry.data.tags.map(tag => (
-        <span class="text-xs text-ink/40 font-body">#{tag}</span>
-      ))}
-    </div>
 
-    <!-- Titre -->
-    <h1 class="font-display text-4xl font-bold mb-10 text-ink">{entry.data.title}</h1>
-
-    <!-- Cover image -->
-    {entry.data.cover && (
-      <div class="rounded-2xl overflow-hidden mb-10">
-        <img src={entry.data.cover} alt={entry.data.title} class="w-full h-auto object-cover lightbox-trigger cursor-zoom-in" />
+      <!-- Badge + Tags -->
+      <div class="flex items-center gap-2 mb-8 flex-wrap">
+        <span class="font-display px-font text-[8px] px-3 py-1 rounded-[2px] bg-peach text-navy">
+          Lab
+        </span>
+        {entry.data.tags.map(tag => (
+          <span class="font-display px-font text-[8px] px-3 py-1 rounded-[2px] border border-navy/15 text-navy/60">
+            {tag}
+          </span>
+        ))}
       </div>
-    )}
 
-    <!-- Séparateur -->
-    <div class="h-px bg-ink/8 mb-10"></div>
+      <!-- Séparateur pixel -->
+      <div class="px-sep mb-10"></div>
 
-    <!-- Contenu -->
-    <div class="prose prose-neutral max-w-none font-body
-  prose-headings:font-display prose-headings:font-bold prose-headings:text-ink
-  prose-p:text-ink/75 prose-p:leading-relaxed
-  prose-a:text-accent prose-a:no-underline hover:prose-a:underline
-  prose-strong:text-ink">
-      <Content />
+      <!-- Contenu Markdown -->
+      <div class="prose prose-neutral max-w-[720px] font-body text-[15px]
+        prose-headings:font-display prose-headings:font-bold prose-headings:text-navy
+        prose-h2:text-[16px] prose-h3:text-[16px]
+        prose-p:text-para prose-p:leading-[1.85]
+        prose-a:text-pink prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4
+        prose-strong:text-navy
+        prose-img:rounded-[2px] prose-img:border-2 prose-img:border-navy">
+        <Content />
+      </div>
+
     </div>
-
   </article>
   <Lightbox />
 </Base>

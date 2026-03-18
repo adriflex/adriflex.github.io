@@ -2,82 +2,85 @@
 import Base from '../layouts/Base.astro';
 ---
 <Base title="About" description="Adrien Rouquié — artiste 3D, illustrateur et créateur de mondes imaginaires, basé à Bordeaux.">
-  <section class="flex-1 flex items-center px-6 py-10 max-w-5xl mx-auto w-full">
+  <section>
+  <div class="max-w-[1120px] mx-auto px-6 md:px-12 py-24">
 
-    <!-- Layout 2 colonnes : contenu gauche + image droite -->
-    <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
+    <!-- Image left + Text right -->
+    <div class="flex flex-col md:flex-row gap-12 lg:gap-16 mb-16">
 
-      <!-- Colonne gauche : tag + nom + bio + liens -->
-      <div class="flex-1 min-w-0">
-
-        <!-- Tag -->
-        <div class="flex items-center gap-2 mb-5">
-          <span class="w-8 h-px bg-accent"></span>
-          <span class="text-sm font-body text-accent font-medium tracking-wide uppercase">À propos</span>
+      <!-- Image — square, ~38% width, centered vertically -->
+      <div class="md:w-[38%] shrink-0 self-center">
+        <div class="rounded-[2px] border-2 border-navy overflow-hidden aspect-square">
+          <img
+            src="/images/artistvsart.png"
+            alt="Adrien Rouquié — personnages 3D et illustrations"
+            class="w-full h-full object-cover lightbox-trigger cursor-zoom-in"
+          />
         </div>
-
-        <h1 class="font-display text-4xl font-bold text-ink mb-6">Adrien Rouquié</h1>
-
-        <div class="space-y-4 mb-8">
-          <p class="font-body text-base text-ink/80 leading-relaxed">
-            Artiste 3D &amp; illustrateur basé à Bordeaux. Spécialisé en personnages et mondes imaginaires —
-            style stylisé, humoristique, coloré.
-          </p>
-          <p class="font-body text-base text-ink/65 leading-relaxed">
-            Formation Supinfocom Arles (Mopa) et École Estienne. J'ai travaillé comme Character Artist
-            chez <strong class="text-ink font-medium">Passion Pictures</strong> (Londres), CG Supervisor sur
-            <em>Tchoupi à la campagne</em>, et actuellement Artiste 3D chez
-            <strong class="text-ink font-medium">Golden Wolf</strong>.
-          </p>
-          <p class="font-body text-base text-ink/65 leading-relaxed">
-            En parallèle je crée des projets perso : jeux (Godot), outils (Blender), apps web, BD.
-            Ce site en est la vitrine.
-          </p>
-        </div>
-
-        <!-- Séparateur -->
-        <div class="h-px bg-ink/8 mb-6"></div>
-
-        <!-- Liens avec aperçu profil -->
-        <h2 class="font-display text-sm font-bold mb-4 text-ink uppercase tracking-wide">Me trouver</h2>
-        <div class="grid grid-cols-3 gap-3">
-          {[
-            { label: 'ArtStation', sub: '56 artworks', href: 'https://artstation.com/adriflex', img: '/images/card-artstation.png', pos: 'object-[center_35%]' },
-            { label: 'Instagram', sub: '309 followers', href: 'https://instagram.com/adrien.flex', img: '/images/card-instagram.png', pos: 'object-[center_40%]' },
-            { label: 'LinkedIn', sub: '1k abonnés', href: 'https://linkedin.com/in/adrienrouquie', img: '/images/card-linkedin.png', pos: 'object-top' },
-          ].map(link => (
-            <a
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="relative group overflow-hidden rounded-xl h-28 flex flex-col justify-end"
-            >
-              <img
-                src={link.img}
-                alt={link.label}
-                class={`absolute inset-0 w-full h-full object-cover ${link.pos} group-hover:scale-110 transition-transform duration-700`}
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-transparent group-hover:from-ink/70 transition-colors duration-300"></div>
-              <div class="relative z-10 p-3">
-                <span class="font-body font-medium text-cream block text-sm leading-tight">{link.label} ↗</span>
-                <span class="text-xs text-cream/60">{link.sub}</span>
-              </div>
-            </a>
-          ))}
-        </div>
-
       </div>
 
-      <!-- Colonne droite : grille de travaux -->
-      <div class="md:w-[400px] shrink-0 self-center">
-        <img
-          src="/images/artistvsart.png"
-          alt="Travaux d'Adrien Rouquié — personnages 3D et illustrations"
-          class="w-full rounded-2xl border border-ink/8"
-        />
-      </div>
+      <!-- Text — vertically centered -->
+      <div class="flex-1 flex flex-col justify-center">
 
+        <h1 class="font-display text-[32px] font-bold text-navy px-font mb-4">Adrien Rouquié</h1>
+
+        <p class="font-body text-[14px] text-para/45 italic mb-10">
+          Des formes vivantes, une lumière qui raconte, un pied dans l'étrange.
+        </p>
+
+        <p class="font-body text-[15px] text-para leading-[1.9] mb-6">
+          Artiste 3D & illustrateur basé à Bordeaux. Je crée des mondes, des personnages et les expériences qui les font vivre — jeux, films, outils, BD.
+        </p>
+
+        <p class="font-body text-[15px] text-para/70 leading-[1.9] mb-6">
+          Formation Supinfocom Arles (Mopa) et École Estienne. Character Artist chez
+          <strong class="text-navy">Passion Pictures</strong> (Londres), CG Supervisor sur
+          <em>T'choupi à la campagne</em>, actuellement Artiste 3D chez
+          <strong class="text-navy">Golden Wolf</strong>.
+        </p>
+
+        <p class="font-body text-[15px] text-para/70 leading-[1.9]">
+          En parallèle : jeux vidéo (Godot), addons Blender, apps web, BD. Le site que vous visitez en est la vitrine.
+        </p>
+
+      </div>
     </div>
 
+    <!-- Pixel separator -->
+    <div class="px-sep mb-12"></div>
+
+    <!-- Me trouver -->
+    <h2 class="font-display text-[8px] font-normal text-para/40 uppercase tracking-[3px] mb-8 flex items-center gap-4 px-font">
+      Me trouver
+      <span class="flex-1 h-px bg-navy/6"></span>
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-16">
+      {[
+        { label: 'ArtStation', sub: '56 artworks', href: 'https://artstation.com/adriflex', img: '/images/card-artstation.png', pos: 'object-[center_35%]' },
+        { label: 'Instagram', sub: '309 followers', href: 'https://instagram.com/adrien.flex', img: '/images/card-instagram.png', pos: 'object-[center_40%]' },
+        { label: 'LinkedIn', sub: '1k+ abonnés', href: 'https://linkedin.com/in/adrienrouquie', img: '/images/card-linkedin.png', pos: 'object-top' },
+      ].map(link => (
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="relative group overflow-hidden rounded-[2px] border-2 border-navy h-40 md:h-48 flex flex-col justify-end transition-all duration-300 hover:-translate-y-1 hover:shadow-[4px_4px_0_rgba(0,24,88,0.1)]"
+        >
+          <img
+            src={link.img}
+            alt={link.label}
+            class={`absolute inset-0 w-full h-full object-cover ${link.pos} group-hover:scale-105 transition-transform duration-500`}
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/30 to-transparent group-hover:from-navy/70 transition-all duration-300"></div>
+          <div class="relative z-10 p-5">
+            <span class="font-display px-font text-[16px] text-bg block mb-1">{link.label} ↗</span>
+            <span class="font-body text-[12px] text-bg/50">{link.sub}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+  </div>
   </section>
 </Base>

@@ -6,164 +6,270 @@ import { getCollection } from 'astro:content';
 const allProjects = await getCollection('projects');
 const allLab = await getCollection('lab');
 
-// Astro 5 uses entry.id (e.g. "orb-of-avarice.md") — strip extension for URL slug
 const toSlug = (id: string) => id.replace(/\.md$/, '');
 
-const publishedProjects = allProjects
-  .filter(p => p.data.status !== 'archived')
+// Split projects by status
+const wipProjects = allProjects
+  .filter(p => p.data.status === 'wip')
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const allLabSorted = allLab
+const publishedProjects = allProjects
+  .filter(p => p.data.status === 'published')
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const labPosts = allLab
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Collect all unique tags
+const allTags = [
+  ...new Set([
+    ...allProjects.filter(p => p.data.status !== 'archived').flatMap(p => p.data.tags),
+    ...allLab.flatMap(p => p.data.tags),
+  ])
+].sort();
+
+// Count per tag
+const tagCounts: Record<string, number> = {};
+allTags.forEach(tag => {
+  tagCounts[tag] = [
+    ...allProjects.filter(p => p.data.status !== 'archived' && p.data.tags.includes(tag)),
+    ...allLab.filter(p => p.data.tags.includes(tag)),
+  ].length;
+});
 ---
 <Base title="Accueil">
 
-  <!-- Hero -->
-  <section class="px-6 pt-20 pb-16 max-w-5xl mx-auto">
-    <div class="flex flex-col md:flex-row items-center gap-12">
+  <section>
+  <div class="max-w-[1120px] mx-auto px-6 md:px-12">
 
-      <!-- Texte -->
-      <div class="flex flex-col gap-6 flex-1">
-        <!-- Tag métier -->
-        <div class="flex items-center gap-2">
-          <span class="w-8 h-px bg-accent"></span>
-          <span class="text-sm font-body text-accent font-medium tracking-wide uppercase">Artiste 3D & Illustrateur</span>
-        </div>
-
-        <!-- Titre principal -->
-        <h1 class="font-display text-[clamp(2rem,4vw,3.75rem)] font-bold leading-[1.05] tracking-tight text-ink">
-          Personnages.<br />
-          <span class="text-accent">Mondes.</span><br />
-          Outils.
-        </h1>
-
-        <!-- Sous-titre -->
-        <p class="font-body text-lg text-ink/60 max-w-md leading-relaxed">
-          Je crée des univers stylisés, des jeux, des outils Blender et des apps.
-          Basé à Bordeaux, en télétravail pour le monde.
-        </p>
-
-        <!-- CTAs -->
-        <div class="flex flex-wrap gap-3 pt-2">
-          <a
-            href="/projects"
-            class="inline-flex items-center gap-2 px-6 py-3 bg-ink text-cream font-body font-medium rounded-full hover:bg-accent transition-colors duration-300 text-sm"
+    <!-- Tag Cloud -->
+    <section class="pt-12 pb-7">
+      <p class="text-[12px] text-para/40 italic mb-4 opacity-0 animate-[fadeSlideLeft_0.4s_ease_0.3s_forwards]">Filtrer par —</p>
+      <div class="flex gap-[10px] flex-wrap" id="tag-cloud">
+        {allTags.map((tag, i) => (
+          <button
+            data-tag={tag}
+            class="tag-btn font-display text-[16px] font-normal px-[18px] py-[8px] rounded-[2px] cursor-pointer
+                   border-2 border-navy/12 text-navy/67 bg-transparent
+                   transition-all duration-250 select-none relative overflow-hidden
+                   hover:border-accent hover:text-navy hover:-translate-y-0.5
+                   hover:shadow-[0_4px_12px_color-mix(in_srgb,#8BD3DD_15%,transparent)]
+                   px-font opacity-0 animate-[fadeSlideUp_0.4s_ease_forwards]"
+            style={`animation-delay: ${0.35 + i * 0.04}s`}
           >
-            Voir les projets
-          </a>
-          <a
-            href="https://artstation.com/adriflex"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-6 py-3 border border-ink/20 text-ink font-body font-medium rounded-full hover:border-accent hover:text-accent transition-colors duration-300 text-sm"
-          >
-            ArtStation ↗
-          </a>
-        </div>
+            #{tag}<span class="tag-count font-body text-[10px] text-pink ml-1.5 opacity-0 transition-opacity duration-200 inline-block translate-y-0.5">{tagCounts[tag]}</span>
+          </button>
+        ))}
       </div>
+    </section>
 
-      <!-- Grille 3 images asymétrique -->
-      <div class="grid grid-cols-[3fr_2fr] grid-rows-2 gap-2 h-[280px] sm:h-[360px] md:h-[460px] md:w-[500px] w-full shrink-0">
-        <!-- Illustration pleine hauteur (colonne gauche, 2 lignes) -->
-        <div class="row-span-2 overflow-hidden rounded-xl border border-ink/8 group cursor-zoom-in">
-          <img
-            src="/images/hero-illustration.png"
-            alt="Illustration — oiseau survolant une ville"
-            class="lightbox-trigger w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
+    <!-- Pixel separator -->
+    <div class="px-sep mb-7"></div>
+
+    <!-- Filter info -->
+    <div id="filter-info" class="text-[13px] text-para/45 mb-6 min-h-[22px]">
+      <span class="text-pink font-bold">{allProjects.filter(p => p.data.status !== 'archived').length + allLab.length}</span> projets
+    </div>
+
+    <!-- En cours -->
+    {wipProjects.length > 0 && (
+      <div data-section="wip">
+        <div class="font-display text-[8px] font-normal text-para/30 uppercase tracking-[3px] mb-5 flex items-center gap-4 px-font">
+          En cours
+          <span class="flex-1 h-px bg-navy/6"></span>
         </div>
-        <!-- Personnage 3D (colonne droite, ligne 1) -->
-        <div class="overflow-hidden rounded-xl border border-ink/8 group cursor-zoom-in">
-          <img
-            src="/images/hero-3d.jpg"
-            alt="Personnage 3D stylisé — archère au chignon"
-            class="lightbox-trigger w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        </div>
-        <!-- Orb of Avarice (colonne droite, ligne 2) -->
-        <div class="overflow-hidden rounded-xl border border-ink/8 group cursor-zoom-in">
-          <img
-            src="/images/hero-game.png"
-            alt="Orb of Avarice — jeu vidéo isométrique"
-            class="lightbox-trigger w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Séparateur -->
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="h-px bg-ink/8"></div>
-  </div>
-
-  <!-- Projets mis en avant -->
-  <section class="px-6 py-14 max-w-5xl mx-auto">
-    <div class="mb-8">
-      <h2 class="font-display text-2xl font-bold">Projets</h2>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {publishedProjects.map(p => (
-        <ProjectCard
-          title={p.data.title}
-          description={p.data.description}
-          slug={toSlug(p.id)}
-          color={p.data.color}
-          tags={p.data.tags}
-          featured={p.data.featured}
-          cover={p.data.cover}
-        />
-      ))}
-    </div>
-  </section>
-
-  <!-- Séparateur -->
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="h-px bg-ink/8"></div>
-  </div>
-
-  <!-- Lab -->
-  <section class="px-6 py-14 max-w-5xl mx-auto">
-    <div class="mb-8">
-      <h2 class="font-display text-2xl font-bold">Lab</h2>
-    </div>
-    <ul>
-      {allLabSorted.map((post, i) => (
-        <li class={i < allLabSorted.length - 1 ? 'border-b border-ink/8' : ''}>
-          <a
-            href={`/lab/${toSlug(post.id)}`}
-            class="flex flex-row items-center gap-3 sm:gap-4 py-4 group hover:text-accent transition-colors duration-200"
-          >
-            {post.data.cover && (
-              <img
-                src={post.data.cover}
-                alt={post.data.title}
-                class="w-14 h-10 sm:w-20 sm:h-14 object-cover rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-200 shrink-0"
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+          {wipProjects.map((p, i) => (
+            <div class="card-wrapper opacity-0 animate-[fadeSlideUp_0.5s_ease_forwards]" style={`animation-delay: ${0.5 + i * 0.08}s`} data-tags={p.data.tags.join(',')}>
+              <ProjectCard
+                title={p.data.title}
+                description={p.data.description}
+                slug={toSlug(p.id)}
+                color={p.data.color}
+                tags={p.data.tags}
+                featured={p.data.featured}
+                cover={p.data.cover}
+                status={p.data.status}
+                statusLabel="En cours"
+                collection="projects"
               />
-            )}
-            <div class="flex-1 min-w-0">
-              <span class="font-body font-medium group-hover:underline underline-offset-4 decoration-accent block">
-                {post.data.title}
-              </span>
-              <span class="sm:hidden text-xs font-body text-ink/40 group-hover:text-accent transition-colors duration-200 mt-0.5 block">
-                {new Date(post.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })}
-              </span>
-              {post.data.tags.length > 0 && (
-                <div class="hidden sm:flex gap-1.5 mt-1 flex-wrap">
-                  {post.data.tags.map(tag => (
-                    <span class="text-xs text-ink/40 font-body">#{tag}</span>
-                  ))}
-                </div>
-              )}
             </div>
-            <span class="hidden sm:inline text-xs sm:text-sm font-body text-ink/40 group-hover:text-accent transition-colors duration-200 shrink-0">
-              {new Date(post.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })}
-            </span>
-          </a>
-        </li>
-      ))}
-    </ul>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Publiés -->
+    {publishedProjects.length > 0 && (
+      <div data-section="published">
+        <div class="font-display text-[8px] font-normal text-para/30 uppercase tracking-[3px] mb-5 flex items-center gap-4 px-font mt-10">
+          Publiés
+          <span class="flex-1 h-px bg-navy/6"></span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+          {publishedProjects.map((p, i) => (
+            <div class="card-wrapper opacity-0 animate-[fadeSlideUp_0.5s_ease_forwards]" style={`animation-delay: ${0.7 + i * 0.08}s`} data-tags={p.data.tags.join(',')}>
+              <ProjectCard
+                title={p.data.title}
+                description={p.data.description}
+                slug={toSlug(p.id)}
+                color={p.data.color}
+                tags={p.data.tags}
+                featured={p.data.featured}
+                cover={p.data.cover}
+                status="published"
+                statusLabel="Publié"
+                collection="projects"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Lab -->
+    {labPosts.length > 0 && (
+      <div data-section="lab">
+        <div class="font-display text-[8px] font-normal text-para/30 uppercase tracking-[3px] mb-5 flex items-center gap-4 px-font mt-10">
+          Lab & expériences
+          <span class="flex-1 h-px bg-navy/6"></span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {labPosts.map((p, i) => (
+            <div class="card-wrapper opacity-0 animate-[fadeSlideUp_0.5s_ease_forwards]" style={`animation-delay: ${0.9 + i * 0.08}s`} data-tags={p.data.tags.join(',')}>
+              <ProjectCard
+                title={p.data.title}
+                description={p.data.description || ''}
+                slug={toSlug(p.id)}
+                color="#7c3aed"
+                tags={p.data.tags}
+                cover={p.data.cover}
+                status="lab"
+                statusLabel="Lab"
+                collection="lab"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+  </div>
   </section>
+
+  <!-- Client-side tag filtering -->
+  <script>
+    let activeTag: string | null = null;
+
+    const tagBtns = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.card-wrapper');
+    const sections = document.querySelectorAll<HTMLElement>('[data-section]');
+    const filterInfo = document.getElementById('filter-info');
+    const totalCount = cards.length;
+
+    // After entrance animations finish, strip animation classes so inline styles work
+    setTimeout(() => {
+      cards.forEach(wrapper => {
+        wrapper.style.animation = 'none';
+        wrapper.style.opacity = '1';
+      });
+      tagBtns.forEach(btn => {
+        btn.style.animation = 'none';
+        btn.style.opacity = '1';
+      });
+    }, 2000);
+
+    function updateFilter() {
+      // Update tag buttons with inline styles (Tailwind dynamic classes don't work)
+      tagBtns.forEach(btn => {
+        const tag = btn.dataset.tag!;
+        const isActive = activeTag === tag;
+
+        if (isActive) {
+          btn.style.borderColor = '#001858';
+          btn.style.color = '#001858';
+          btn.style.backgroundColor = 'rgba(139, 211, 221, 0.25)';
+          btn.style.boxShadow = '3px 3px 0 rgba(0, 24, 88, 0.1)';
+        } else {
+          btn.style.borderColor = '';
+          btn.style.color = '';
+          btn.style.backgroundColor = '';
+          btn.style.boxShadow = '';
+        }
+
+        const countEl = btn.querySelector('.tag-count') as HTMLElement;
+        if (countEl) {
+          countEl.style.opacity = isActive ? '1' : '0';
+        }
+      });
+
+      // Filter cards
+      let visibleCount = 0;
+      cards.forEach(wrapper => {
+        const cardTags = (wrapper.dataset.tags || '').split(',');
+        const isMatch = !activeTag || cardTags.includes(activeTag);
+
+        if (isMatch) {
+          wrapper.style.opacity = '1';
+          wrapper.style.transform = '';
+          wrapper.style.filter = '';
+          wrapper.style.pointerEvents = '';
+          visibleCount++;
+        } else {
+          wrapper.style.opacity = '0.12';
+          wrapper.style.transform = 'scale(0.96)';
+          wrapper.style.filter = 'grayscale(0.4)';
+          wrapper.style.pointerEvents = 'none';
+        }
+        wrapper.style.transition = 'opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease';
+      });
+
+      // Hide empty sections
+      sections.forEach(section => {
+        const sectionCards = section.querySelectorAll<HTMLElement>('.card-wrapper');
+        let hasVisible = false;
+        sectionCards.forEach(c => {
+          const tags = (c.dataset.tags || '').split(',');
+          if (!activeTag || tags.includes(activeTag)) hasVisible = true;
+        });
+        section.style.display = hasVisible ? '' : 'none';
+      });
+
+      // Update info
+      if (filterInfo) {
+        if (!activeTag) {
+          filterInfo.innerHTML = `<span style="color:#F582AE;font-weight:700;">${totalCount}</span> projets`;
+        } else {
+          filterInfo.innerHTML = `<span style="color:#F582AE;font-weight:700;">${visibleCount}</span> projet${visibleCount > 1 ? 's' : ''} en <span style="color:#F582AE;font-weight:700;">#${activeTag}</span> <button id="clear-filter" style="font-family:Silkscreen,sans-serif;font-size:8px;color:#F582AE;cursor:pointer;margin-left:8px;border:1px solid rgba(245,130,174,0.4);padding:2px 8px;border-radius:2px;background:transparent;">✕ clear</button>`;
+          document.getElementById('clear-filter')?.addEventListener('click', () => {
+            activeTag = null;
+            updateFilter();
+          });
+        }
+      }
+    }
+
+    // Tag button clicks
+    tagBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag!;
+        activeTag = activeTag === tag ? null : tag;
+        updateFilter();
+      });
+    });
+
+    // Card tag clicks (delegated)
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.dataset.cardTag) {
+        e.preventDefault();
+        e.stopPropagation();
+        const tag = target.dataset.cardTag;
+        activeTag = activeTag === tag ? null : tag;
+        updateFilter();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  </script>
 
 </Base>
