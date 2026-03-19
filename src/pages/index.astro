@@ -44,12 +44,17 @@ allTags.forEach(tag => {
 
     <!-- Tag Cloud -->
     <section class="pt-12 pb-7">
-      <p class="text-[12px] text-para/40 italic mb-4 opacity-0 animate-[fadeSlideLeft_0.4s_ease_0.3s_forwards]">Filtrer par —</p>
-      <div class="flex gap-[10px] flex-wrap" id="tag-cloud">
+      <div class="flex items-center gap-3 mb-4">
+        <p class="text-[12px] text-para/40 italic opacity-0 animate-[fadeSlideLeft_0.4s_ease_0.3s_forwards]">Filtrer par —</p>
+        <button id="toggle-tags" class="md:hidden font-display text-[10px] text-pink border border-pink/40 px-3 py-1 rounded-[2px] px-font opacity-0 animate-[fadeSlideLeft_0.4s_ease_0.4s_forwards]">
+          Afficher les tags ▾
+        </button>
+      </div>
+      <div class="hidden md:flex gap-[6px] md:gap-[10px] flex-wrap" id="tag-cloud">
         {allTags.map((tag, i) => (
           <button
             data-tag={tag}
-            class="tag-btn font-display text-[16px] font-normal px-[18px] py-[8px] rounded-[2px] cursor-pointer
+            class="tag-btn font-display text-[10px] md:text-[16px] font-normal px-[10px] py-[5px] md:px-[18px] md:py-[8px] rounded-[2px] cursor-pointer
                    border-2 border-navy/12 text-navy/67 bg-transparent
                    transition-all duration-250 select-none relative overflow-hidden
                    hover:border-accent hover:text-navy hover:-translate-y-0.5
@@ -57,7 +62,7 @@ allTags.forEach(tag => {
                    px-font opacity-0 animate-[fadeSlideUp_0.4s_ease_forwards]"
             style={`animation-delay: ${0.35 + i * 0.04}s`}
           >
-            #{tag}<span class="tag-count font-body text-[10px] text-pink ml-1.5 opacity-0 transition-opacity duration-200 inline-block translate-y-0.5">{tagCounts[tag]}</span>
+            #{tag}<span class="tag-count font-body text-[8px] md:text-[10px] text-pink ml-1 md:ml-1.5 opacity-0 transition-opacity duration-200 inline-block translate-y-0.5">{tagCounts[tag]}</span>
           </button>
         ))}
       </div>
@@ -159,6 +164,29 @@ allTags.forEach(tag => {
 
   <!-- Client-side tag filtering -->
   <script>
+    // Mobile tag cloud toggle
+    const toggleTagsBtn = document.getElementById('toggle-tags');
+    const tagCloud = document.getElementById('tag-cloud');
+    if (toggleTagsBtn && tagCloud) {
+      toggleTagsBtn.addEventListener('click', () => {
+        const isHidden = tagCloud.classList.contains('hidden');
+        if (isHidden) {
+          tagCloud.classList.remove('hidden');
+          tagCloud.classList.add('flex');
+          toggleTagsBtn.textContent = 'Masquer les tags ▴';
+          // Trigger animations
+          tagCloud.querySelectorAll('.tag-btn').forEach(btn => {
+            (btn as HTMLElement).style.opacity = '1';
+            (btn as HTMLElement).style.animation = 'none';
+          });
+        } else {
+          tagCloud.classList.add('hidden');
+          tagCloud.classList.remove('flex');
+          toggleTagsBtn.textContent = 'Afficher les tags ▾';
+        }
+      });
+    }
+
     let activeTag: string | null = null;
 
     const tagBtns = document.querySelectorAll<HTMLButtonElement>('.tag-btn');

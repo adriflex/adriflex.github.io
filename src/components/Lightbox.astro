@@ -111,6 +111,8 @@
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
     if (target.matches('.prose img, img.lightbox-trigger')) {
+      // Skip lightbox on mobile — the popup image would be smaller than the original
+      if (window.innerWidth < 768) return;
       openLightbox((target as HTMLImageElement).src, target.getAttribute('alt') ?? '');
     }
   });

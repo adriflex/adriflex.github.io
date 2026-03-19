@@ -83,9 +83,12 @@ body {
   color: var(--color-navy);
 }
 
-/* Cursor zoom on markdown images */
-.prose img {
-  cursor: zoom-in;
+/* Cursor zoom on markdown images — desktop only (lightbox disabled on mobile) */
+@media (min-width: 768px) {
+  .prose img,
+  img.lightbox-trigger {
+    cursor: zoom-in;
+  }
 }
 
 /* Pixel separator utility */
