@@ -8,17 +8,58 @@ const allLab = await getCollection('lab');
 
 const toSlug = (id: string) => id.replace(/\.md$/, '');
 
-// Split projects by status
-const wipProjects = allProjects
-  .filter(p => p.data.status === 'wip')
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+// Merge all items into a single list with unified shape
+type CardItem = {
+  title: string;
+  description: string;
+  slug: string;
+  color: string;
+  tags: string[];
+  featured: boolean;
+  cover?: string;
+  status: string;
+  statusLabel: string;
+  collection: string;
+  date: Date;
+};
 
-const publishedProjects = allProjects
-  .filter(p => p.data.status === 'published')
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const allItems: CardItem[] = [
+  ...allProjects.filter(p => p.data.status !== 'archived').map(p => ({
+    title: p.data.title,
+    description: p.data.description,
+    slug: toSlug(p.id),
+    color: p.data.color,
+    tags: p.data.tags,
+    featured: p.data.featured,
+    cover: p.data.cover,
+    status: p.data.status,
+    statusLabel: p.data.status === 'wip' ? 'En cours' : 'Publié',
+    collection: 'projects',
+    date: p.data.date,
+  })),
+  ...allLab.map(p => ({
+    title: p.data.title,
+    description: '',
+    slug: toSlug(p.id),
+    color: '#7c3aed',
+    tags: p.data.tags,
+    featured: false,
+    cover: p.data.cover,
+    status: 'lab',
+    statusLabel: 'Lab',
+    collection: 'lab',
+    date: p.data.date,
+  })),
+].sort((a, b) => b.date.valueOf() - a.date.valueOf());
 
-const labPosts = allLab
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+// Group by year
+const itemsByYear: Record<number, CardItem[]> = {};
+allItems.forEach(item => {
+  const year = item.date.getFullYear();
+  if (!itemsByYear[year]) itemsByYear[year] = [];
+  itemsByYear[year].push(item);
+});
+const years = Object.keys(itemsByYear).map(Number).sort((a, b) => b - a);
 
 // Collect all unique tags
 const allTags = [
@@ -73,91 +114,36 @@ allTags.forEach(tag => {
 
     <!-- Filter info -->
     <div id="filter-info" class="text-[13px] text-para/45 mb-6 min-h-[22px]">
-      <span class="text-pink font-bold">{allProjects.filter(p => p.data.status !== 'archived').length + allLab.length}</span> projets
+      <span class="text-pink font-bold">{allItems.length}</span> projets
     </div>
 
-    <!-- En cours -->
-    {wipProjects.length > 0 && (
-      <div data-section="wip">
-        <div class="font-display text-[8px] font-normal text-para/30 uppercase tracking-[3px] mb-5 flex items-center gap-4 px-font">
-          En cours
+    <!-- Grid by year -->
+    {years.map((year, yi) => (
+      <div data-section={`year-${year}`}>
+        <div class="font-display text-[8px] font-normal text-para/30 uppercase tracking-[3px] mb-5 flex items-center gap-4 px-font" style={yi > 0 ? 'margin-top: 2.5rem;' : ''}>
+          {year}
           <span class="flex-1 h-px bg-navy/6"></span>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-          {wipProjects.map((p, i) => (
-            <div class="card-wrapper opacity-0 animate-[fadeSlideUp_0.5s_ease_forwards]" style={`animation-delay: ${0.5 + i * 0.08}s`} data-tags={p.data.tags.join(',')}>
+          {itemsByYear[year].map((item, i) => (
+            <div class="card-wrapper opacity-0 animate-[fadeSlideUp_0.5s_ease_forwards]" style={`animation-delay: ${0.5 + (yi * 3 + i) * 0.06}s`} data-tags={item.tags.join(',')}>
               <ProjectCard
-                title={p.data.title}
-                description={p.data.description}
-                slug={toSlug(p.id)}
-                color={p.data.color}
-                tags={p.data.tags}
-                featured={p.data.featured}
-                cover={p.data.cover}
-                status={p.data.status}
-                statusLabel="En cours"
-                collection="projects"
+                title={item.title}
+                description={item.description}
+                slug={item.slug}
+                color={item.color}
+                tags={item.tags}
+                featured={item.featured}
+                cover={item.cover}
+                status={item.status}
+                statusLabel={item.statusLabel}
+                collection={item.collection}
               />
             </div>
           ))}
         </div>
       </div>
-    )}
-
-    <!-- Publiés -->
-    {publishedProjects.length > 0 && (
-      <div data-section="published">
-        <div class="font-display text-[8px] font-normal text-para/30 uppercase tracking-[3px] mb-5 flex items-center gap-4 px-font mt-10">
-          Publiés
-          <span class="flex-1 h-px bg-navy/6"></span>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-          {publishedProjects.map((p, i) => (
-            <div class="card-wrapper opacity-0 animate-[fadeSlideUp_0.5s_ease_forwards]" style={`animation-delay: ${0.7 + i * 0.08}s`} data-tags={p.data.tags.join(',')}>
-              <ProjectCard
-                title={p.data.title}
-                description={p.data.description}
-                slug={toSlug(p.id)}
-                color={p.data.color}
-                tags={p.data.tags}
-                featured={p.data.featured}
-                cover={p.data.cover}
-                status="published"
-                statusLabel="Publié"
-                collection="projects"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    )}
-
-    <!-- Lab -->
-    {labPosts.length > 0 && (
-      <div data-section="lab">
-        <div class="font-display text-[8px] font-normal text-para/30 uppercase tracking-[3px] mb-5 flex items-center gap-4 px-font mt-10">
-          Lab & expériences
-          <span class="flex-1 h-px bg-navy/6"></span>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {labPosts.map((p, i) => (
-            <div class="card-wrapper opacity-0 animate-[fadeSlideUp_0.5s_ease_forwards]" style={`animation-delay: ${0.9 + i * 0.08}s`} data-tags={p.data.tags.join(',')}>
-              <ProjectCard
-                title={p.data.title}
-                description={p.data.description || ''}
-                slug={toSlug(p.id)}
-                color="#7c3aed"
-                tags={p.data.tags}
-                cover={p.data.cover}
-                status="lab"
-                statusLabel="Lab"
-                collection="lab"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    )}
+    ))}
 
   </div>
   </section>
@@ -174,7 +160,6 @@ allTags.forEach(tag => {
           tagCloud.classList.remove('hidden');
           tagCloud.classList.add('flex');
           toggleTagsBtn.textContent = 'Masquer les tags ▴';
-          // Trigger animations
           tagCloud.querySelectorAll('.tag-btn').forEach(btn => {
             (btn as HTMLElement).style.opacity = '1';
             (btn as HTMLElement).style.animation = 'none';
@@ -208,7 +193,6 @@ allTags.forEach(tag => {
     }, 2000);
 
     function updateFilter() {
-      // Update tag buttons with inline styles (Tailwind dynamic classes don't work)
       tagBtns.forEach(btn => {
         const tag = btn.dataset.tag!;
         const isActive = activeTag === tag;
@@ -231,7 +215,6 @@ allTags.forEach(tag => {
         }
       });
 
-      // Filter cards
       let visibleCount = 0;
       cards.forEach(wrapper => {
         const cardTags = (wrapper.dataset.tags || '').split(',');
@@ -252,7 +235,7 @@ allTags.forEach(tag => {
         wrapper.style.transition = 'opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease';
       });
 
-      // Hide empty sections
+      // Hide empty year sections
       sections.forEach(section => {
         const sectionCards = section.querySelectorAll<HTMLElement>('.card-wrapper');
         let hasVisible = false;
@@ -263,7 +246,6 @@ allTags.forEach(tag => {
         section.style.display = hasVisible ? '' : 'none';
       });
 
-      // Update info
       if (filterInfo) {
         if (!activeTag) {
           filterInfo.innerHTML = `<span style="color:#F582AE;font-weight:700;">${totalCount}</span> projets`;
@@ -277,7 +259,6 @@ allTags.forEach(tag => {
       }
     }
 
-    // Tag button clicks
     tagBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const tag = btn.dataset.tag!;
@@ -286,7 +267,6 @@ allTags.forEach(tag => {
       });
     });
 
-    // Card tag clicks (delegated)
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
       if (target.dataset.cardTag) {

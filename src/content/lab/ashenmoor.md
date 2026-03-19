@@ -1,7 +1,7 @@
 ---
 title: "Ashenmoor"
 date: 2026-02-01
-tags: [univers, dark-fantasy, narrative, wip]
+tags: [univers, dark-fantasy, jeu]
 cover: "/images/ashenmoor-cover.png"
 ---
 
@@ -47,8 +47,6 @@ Petite créature, autrefois humaine, transformation en cours. Dans un monde où 
 
 ---
 
-*Ashenmoor est un projet en cours — univers narratif dark fantasy développé début 2026. 11 personnages, une structure narrative complète avec prologue et 3 actes.*
+*Ashenmoor est un projet en cours. Onze personnages, trois actes, un prologue. L'univers existe sur le papier depuis début 2026 — les visuels sont des recherches de direction artistique, le style continue d'évoluer.*
 
-*La direction artistique est encore en recherche : Mike Mignola comme référence, style pas encore figé. Les visuels ci-dessus sont des premiers jets de concept art générés avec IA — explorations graphiques, pas illustrations finales.*
-
-→ Pipeline en cours : [Ashenmoor — KESH prend forme](/lab/2026-03-02-ashenmoor-kesh)
+→ À voir aussi : [Ashenmoor — KESH prend forme](/lab/2026-03-02-ashenmoor-kesh)

@@ -14,8 +14,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+const slug = entry.id.replace(/\.md$/, '');
+const ogImage = new URL(`og/projects/${slug}.png`, Astro.site).href;
 ---
-<Base title={entry.data.title} description={entry.data.description}>
+<Base title={entry.data.title} description={entry.data.description} ogImage={ogImage}>
   <article>
     <div class="max-w-[1120px] mx-auto px-6 md:px-12 py-12">
 
@@ -25,21 +27,29 @@ const { Content } = await entry.render();
       </a>
 
       <!-- Cover image — full container width -->
-      <div
-        class="rounded-[2px] border-2 border-navy relative overflow-hidden flex items-center justify-center mb-10"
-        style={`height: clamp(240px, 35vw, 400px); background-color: color-mix(in srgb, ${entry.data.color} 15%, var(--color-bg));`}
-      >
-        {entry.data.cover ? (
-          <img src={entry.data.cover} alt={entry.data.title} class="w-full h-full object-cover lightbox-trigger cursor-zoom-in absolute inset-0" />
-        ) : (
-          <>
-            <div class="absolute w-40 h-40 rounded-full opacity-15" style={`background: ${entry.data.color};`}></div>
-            <span class="relative font-display px-font text-7xl font-bold opacity-25 select-none" style={`color: ${entry.data.color};`}>
-              {entry.data.title.charAt(0)}
-            </span>
-          </>
-        )}
-      </div>
+      {entry.data.coverFull ? (
+        <div class="rounded-[2px] border-2 border-navy overflow-hidden mb-10">
+          {entry.data.cover && (
+            <img src={entry.data.cover} alt={entry.data.title} class="w-full h-auto lightbox-trigger cursor-zoom-in" />
+          )}
+        </div>
+      ) : (
+        <div
+          class="rounded-[2px] border-2 border-navy relative overflow-hidden flex items-center justify-center mb-10"
+          style={`height: clamp(240px, 35vw, 400px); background-color: color-mix(in srgb, ${entry.data.color} 15%, var(--color-bg));`}
+        >
+          {entry.data.cover ? (
+            <img src={entry.data.cover} alt={entry.data.title} class="w-full h-full object-cover lightbox-trigger cursor-zoom-in absolute inset-0" />
+          ) : (
+            <>
+              <div class="absolute w-40 h-40 rounded-full opacity-15" style={`background: ${entry.data.color};`}></div>
+              <span class="relative font-display px-font text-7xl font-bold opacity-25 select-none" style={`color: ${entry.data.color};`}>
+                {entry.data.title.charAt(0)}
+              </span>
+            </>
+          )}
+        </div>
+      )}
 
       <!-- Titre -->
       <h1 class="font-display px-font text-[32px] font-bold text-navy leading-[1.5] mb-4">{entry.data.title}</h1>
@@ -79,9 +89,21 @@ const { Content } = await entry.render();
           href={entry.data.link}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-accent text-navy font-display px-font text-[16px] rounded-[2px] transition-all duration-200 hover:shadow-[4px_4px_0_rgba(139,211,221,0.3)] hover:-translate-y-0.5 mb-10"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-pink text-navy font-display px-font text-[16px] rounded-[2px] transition-all duration-200 hover:shadow-[4px_4px_0_rgba(245,130,174,0.3)] hover:-translate-y-0.5 mb-10"
         >
-          Voir le projet ↗
+          {entry.data.ctaLabel || 'Voir le projet ↗'}
+        </a>
+      )}
+
+      <!-- CTA PDF haut de page -->
+      {entry.data.pdfDownload && (
+        <a
+          href={entry.data.pdfDownload}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-pink text-navy font-display px-font text-[16px] rounded-[2px] transition-all duration-200 hover:shadow-[4px_4px_0_rgba(245,130,174,0.3)] hover:-translate-y-0.5 mb-10"
+        >
+          ↓ Lire la BD (PDF)
         </a>
       )}
 
@@ -94,20 +116,6 @@ const { Content } = await entry.render();
         </div>
       )}
 
-      <!-- Télécharger PDF -->
-      {entry.data.pdfDownload && (
-        <div class="mb-6">
-          <a
-            href={entry.data.pdfDownload}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-navy/15 text-navy font-display px-font text-[16px] rounded-[2px] transition-all duration-200 hover:border-pink hover:text-pink hover:-translate-y-0.5"
-          >
-            ↓ Télécharger le PDF
-          </a>
-        </div>
-      )}
-
       <!-- Séparateur pixel -->
       <div class="px-sep mb-10"></div>
 
@@ -116,11 +124,12 @@ const { Content } = await entry.render();
         prose-headings:font-display prose-headings:font-bold prose-headings:text-navy
         prose-h2:text-[16px] prose-h3:text-[16px]
         prose-p:text-para prose-p:leading-[1.85]
-        prose-a:text-pink prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4
+        prose-a:text-pink prose-a:no-underline prose-a:hover:underline prose-a:underline-offset-4
         prose-strong:text-navy
         prose-img:rounded-[2px] prose-img:border-2 prose-img:border-navy">
         <Content />
       </div>
+
 
     </div>
   </article>

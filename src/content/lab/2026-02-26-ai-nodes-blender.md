@@ -1,27 +1,26 @@
 ---
 title: "IA Nodes — un node graph IA dans Blender"
 date: 2026-02-26
-tags: [blender, addon, ia, workflow]
+tags: [blender, outil, ia]
 cover: "/images/ai-nodes-schema.png"
 ---
 
-L'idée de départ : composer des pipelines de génération IA visuellement, sans quitter Blender. Pas en bricolant des scripts Python à la main — en connectant des nœuds, comme on le fait déjà pour les matériaux ou le compositing.
+Blender a déjà un node graph pour les matériaux, le compositing, les Geometry Nodes. L'idée : en ajouter un pour l'IA.
 
-**IA Nodes** ajoute un type de node tree custom dans Blender. Chaque nœud est une étape du pipeline : entrée texte, appel à un modèle Replicate, jointure de strings, post-traitement via le Compositor, export. On les connecte, on appuie sur Ctrl+R, et la chaîne s'exécute.
-
----
-
-Quelques détails qui m'ont plu à construire :
-
-- **Zéro dépendance externe** — tout passe par `urllib`, la lib standard de Python. Pas de `pip install`, pas de venv, pas de friction à l'installation.
-- **Sockets dynamiques** — le nœud Replicate fetch le schéma du modèle au changement, et reconstruit ses entrées en conséquence. Changer de modèle reconfigure automatiquement les paramètres disponibles.
-- **Feedback visuel** — les nœuds passent au rouge pendant l'exécution, au vert quand c'est bon, à l'orange si la topologie a changé depuis le dernier run.
-- **Auto-exécution** — les nœuds Viewer se déclenchent seuls quand l'upstream ne contient que des nœuds de données. Pas besoin d'appuyer sur Run juste pour voir un texte.
-
-Le tout tourne sur Blender 5.0. Les modèles disponibles par défaut : FLUX Schnell, FLUX Dev, FLUX 1.1 Pro, SDXL, Claude Haiku pour le texte.
-
-Version 0.1.0 — prototype fonctionnel, sortie publique à venir.
-
----
+**IA Nodes** ajoute un type de node tree dans Blender. Par exemple : un nœud texte avec un prompt simple, connecté à un nœud qui l'enrichit via Claude, connecté à un nœud qui génère une image avec FLUX, connecté à un nœud qui en fait une vidéo. On branche, `Ctrl+R`, la chaîne s'exécute. Tout passe par l'API [Replicate](https://replicate.com).
 
 ![IA Nodes en action — génération d'une fiche personnage](/images/ai-nodes-screenshot.png)
+
+---
+
+Mes connaissances en Python et en add-on Blender font que maintenant, avec l'IA, je peux construire des outils assez facilement — du moins sur les domaines que je connais bien. Cet add-on est un bon exemple : le nœud Replicate récupère le schéma du modèle automatiquement et reconstruit ses entrées. Changer de modèle reconfigure tout. Les nœuds changent de couleur pendant l'exécution — rouge en cours, vert terminé, orange si quelque chose a changé.
+
+---
+
+Côté modèles, tout passe par l'API Replicate — on paie à l'image, pas d'abonnement. Les modèles rapides (FLUX Schnell, FLUX Dev) coûtent quelques fractions de centime par image. Les plus puissants comme FLUX 1.1 Pro ou Nano Banana Pro sont un peu plus chers, mais on ne paie que ce qu'on génère. Pas de gaspillage.
+
+---
+
+Honnêtement, depuis que j'ai connecté Claude Code directement à Replicate, j'ai moins eu besoin de passer par ce plugin. Je veux encore voir jusqu'où il pourrait m'être utile et le peaufiner avant de publier.
+
+→ Voir aussi : [Texture Diffusion v2](/lab/2026-02-26-texture-diffusion-v3)

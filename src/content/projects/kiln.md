@@ -1,7 +1,11 @@
 ---
-title: "Kiln — pourquoi j'ai tout refait depuis zéro"
+title: "Kiln"
+description: "Successeur d'UniMat — bake et export de matériaux Blender vers Godot, proprement."
 date: 2026-02-27
-tags: [blender, godot, addon, pipeline, bake, wip]
+tags: [blender, outil, godot, 3d]
+featured: false
+color: "#1d4ed8"
+status: wip
 cover: "/images/kiln-cover.png"
 ---
 
