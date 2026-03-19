@@ -24,18 +24,33 @@ Deux fichiers endpoint qui génèrent les images à la demande au build :
 - `src/pages/og/projects/[slug].png.ts` — pour les projets
 - `src/pages/og/lab/[slug].png.ts` — pour les articles Lab
 
+Chaque endpoint **doit exporter `getStaticPaths`** (même pattern que les pages existantes `projects/[slug].astro` et `lab/[slug].astro`) pour qu'Astro génère toutes les images au build.
+
 Chaque endpoint :
-1. Récupère l'entrée de la collection par slug
-2. Construit le markup satori (JSX-like object) avec les données
-3. Génère le SVG via satori (1200×630)
-4. Convertit en PNG via resvg
-5. Retourne le PNG en `Response`
+1. Exporte `getStaticPaths` → itère la collection, retourne les slugs
+2. Récupère l'entrée de la collection par slug
+3. Construit le markup satori (JSX-like object) avec les données
+4. Génère le SVG via satori (1200×630)
+5. Convertit en PNG via resvg
+6. Retourne le PNG en `Response`
+
+**Dérivation du slug** : `entry.id.replace(/\.md$/, '')` — même convention que les pages existantes.
+
+### Cover images dans satori
+
+Les covers sont des chemins publics relatifs (ex: `/images/texture-diffusion-cover.png`). Satori nécessite des URLs absolues ou du base64. À build-time, le site distant n'est pas forcément accessible.
+
+**Approche recommandée** : lire le fichier depuis `public/` sur le disque et le convertir en base64 data URI. Exemple : `fs.readFileSync('public/images/foo.png')` → `data:image/png;base64,...`.
 
 ### Intégration dans le layout
 
-**`Base.astro`** — ajouter les props `ogImage` et `type` (project/lab) :
+**`Base.astro`** — ajouter la prop `ogImage` à l'interface Props :
 
 ```html
+<meta property="og:type" content="website" />
+<meta property="og:title" content={canonicalTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={Astro.url.href} />
 <meta property="og:image" content={ogImage} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -43,11 +58,14 @@ Chaque endpoint :
 <meta name="twitter:image" content={ogImage} />
 ```
 
-**`projects/[slug].astro`** et **`lab/[slug].astro`** — passer l'URL de l'og:image au layout :
+Note : n'ajouter les meta `og:image` et `twitter:image` que si `ogImage` est défini. Les meta `og:type`, `og:title`, `og:description`, `og:url` sont ajoutés sur toutes les pages.
 
-```
-ogImage={`${Astro.site}og/projects/${slug}.png`}
-ogImage={`${Astro.site}og/lab/${slug}.png`}
+**`projects/[slug].astro`** et **`lab/[slug].astro`** — passer l'URL de l'og:image au layout. Utiliser `new URL()` pour éviter les doubles slashes :
+
+```typescript
+const ogImage = new URL(`og/projects/${slug}.png`, Astro.site).href;
+// ou pour lab :
+const ogImage = new URL(`og/lab/${slug}.png`, Astro.site).href;
 ```
 
 ## Design visuel
@@ -80,7 +98,7 @@ ogImage={`${Astro.site}og/lab/${slug}.png`}
   - Description : Space Mono, ~16px, `#172C66` à 60% opacité (projets seulement — les articles Lab n'ont pas de description dans le schema)
   - Tags : Space Mono, ~11px, bordure `#001858` à 15% opacité
 - **Zone droite (~45%)** : visuel
-  - Si cover existe : image cover du projet/article
+  - Si cover existe : image cover (chargée en base64 depuis `public/`)
   - Si pas de cover : dégradé `#8BD3DD` → `#F582AE` (cyan → pink)
 - **Barre bas** : 4px, `#F582AE` (pink), pleine largeur
 
@@ -90,6 +108,7 @@ ogImage={`${Astro.site}og/lab/${slug}.png`}
 |-----------|------------|-------------|-------------|
 | projects  | published  | Published   | #F582AE     |
 | projects  | wip        | WIP         | #8BD3DD     |
+| projects  | archived   | Archived    | #001858 (navy, 20% opacity) |
 | lab       | —          | Lab         | #F3D2C1     |
 
 ### Polices
@@ -105,14 +124,14 @@ Satori ne supporte pas Google Fonts directement — il faut embarquer les fichie
 - `title` ✅
 - `description` ✅
 - `tags` ✅
-- `cover` ✅ (optionnel)
+- `cover` ✅ (optionnel — chemin relatif public, ex: `/images/foo.png`)
 - `status` ✅ (published/wip/archived)
 - `color` ✅ (fallback dégradé)
 
 ### Lab
 - `title` ✅
 - `tags` ✅
-- `cover` ✅ (optionnel)
+- `cover` ✅ (optionnel — chemin relatif public)
 - `date` ✅
 - Pas de description ni status — badge fixe "Lab"
 
@@ -120,7 +139,7 @@ Satori ne supporte pas Google Fonts directement — il faut embarquer les fichie
 
 - Toutes les pages `projects/[slug]` → og:image auto
 - Toutes les pages `lab/[slug]` → og:image auto
-- Page d'accueil et About → pas d'og:image dynamique (on peut ajouter une image statique plus tard)
+- Page d'accueil et About → pas d'og:image dynamique (phase 2 : image statique `public/og-default.png`)
 
 ## Fichiers à créer/modifier
 
@@ -133,14 +152,14 @@ Satori ne supporte pas Google Fonts directement — il faut embarquer les fichie
 - `src/lib/og-template.ts` — template satori partagé entre les deux endpoints
 
 ### Modifier
-- `src/layouts/Base.astro` — ajouter meta og:image + twitter:card
-- `src/pages/projects/[slug].astro` — passer ogImage au layout
-- `src/pages/lab/[slug].astro` — passer ogImage au layout
+- `src/layouts/Base.astro` — ajouter prop `ogImage` + meta og complets (og:type, og:title, og:description, og:url, og:image, twitter:card)
+- `src/pages/projects/[slug].astro` — passer ogImage au layout via `new URL()`
+- `src/pages/lab/[slug].astro` — passer ogImage au layout via `new URL()`
 - `package.json` — ajouter satori + @resvg/resvg-js
 
 ## Contraintes satori
 
 - Satori utilise un subset de CSS (flexbox uniquement, pas de grid)
-- Les images (cover) doivent être en URL absolue ou en base64
+- Les images doivent être en URL absolue ou base64 data URI → on utilise base64 depuis le disque
 - Les polices doivent être des fichiers TTF/OTF chargés en ArrayBuffer
-- Pas de `border-radius` sur les images dans certains cas
+- `overflow: hidden` ne clip pas correctement les images — éviter border-radius sur les images cover
