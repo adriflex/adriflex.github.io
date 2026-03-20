@@ -1,0 +1,81 @@
+<h2>Que montrer sur l'image de preview ?</h2>
+<p class="subtitle">Quand tu partages un lien sur LinkedIn/Discord/Slack, voici ce qui s'afficherait</p>
+
+<div class="cards">
+
+  <!-- Option A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0;overflow:hidden;">
+      <div style="width:100%;height:280px;background:#FEF6E4;display:flex;position:relative;font-family:monospace;">
+        <!-- Left side: text -->
+        <div style="flex:1;padding:28px 24px;display:flex;flex-direction:column;justify-content:center;">
+          <div style="font-size:10px;color:#F582AE;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Adriflex</div>
+          <div style="font-size:22px;font-weight:bold;color:#001858;line-height:1.3;margin-bottom:12px;">Texture Diffusion v3</div>
+          <div style="font-size:11px;color:#172C66;opacity:0.6;line-height:1.5;">AI-powered texturing for Blender — paint materials with text prompts</div>
+          <div style="display:flex;gap:6px;margin-top:14px;">
+            <span style="font-size:9px;padding:3px 8px;border:1px solid rgba(0,24,88,0.15);color:#001858;opacity:0.6;">Blender</span>
+            <span style="font-size:9px;padding:3px 8px;border:1px solid rgba(0,24,88,0.15);color:#001858;opacity:0.6;">AI</span>
+            <span style="font-size:9px;padding:3px 8px;border:1px solid rgba(0,24,88,0.15);color:#001858;opacity:0.6;">Plugin</span>
+          </div>
+        </div>
+        <!-- Right side: cover placeholder -->
+        <div style="width:45%;background:linear-gradient(135deg,#8BD3DD 0%,#F582AE 100%);display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:48px;opacity:0.3;color:#001858;">🖼️</div>
+        </div>
+        <!-- Bottom bar -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:#F582AE;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Titre + Cover</h3>
+      <p>Texte à gauche (titre, description, tags) + image cover du projet à droite. Classique, efficace.</p>
+    </div>
+  </div>
+
+  <!-- Option B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0;overflow:hidden;">
+      <div style="width:100%;height:280px;background:#001858;display:flex;align-items:center;justify-content:center;position:relative;font-family:monospace;">
+        <div style="text-align:center;padding:24px;">
+          <div style="font-size:10px;color:#F582AE;text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;">Adriflex — Lab</div>
+          <div style="font-size:28px;font-weight:bold;color:#FEF6E4;line-height:1.3;margin-bottom:8px;">Texture Diffusion v3</div>
+          <div style="font-size:12px;color:#F3D2C1;opacity:0.7;">AI-powered texturing for Blender</div>
+          <div style="display:flex;gap:6px;justify-content:center;margin-top:16px;">
+            <span style="font-size:9px;padding:3px 10px;border:1px solid rgba(254,246,228,0.2);color:#FEF6E4;opacity:0.6;">Blender</span>
+            <span style="font-size:9px;padding:3px 10px;border:1px solid rgba(254,246,228,0.2);color:#FEF6E4;opacity:0.6;">AI</span>
+          </div>
+        </div>
+        <!-- Decorative corner -->
+        <div style="position:absolute;top:16px;left:16px;width:24px;height:24px;border-top:3px solid #8BD3DD;border-left:3px solid #8BD3DD;"></div>
+        <div style="position:absolute;bottom:16px;right:16px;width:24px;height:24px;border-bottom:3px solid #F582AE;border-right:3px solid #F582AE;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Typographique (sans image)</h3>
+      <p>Fond navy, titre centré, branding fort. Pas besoin d'image cover — marche même si l'article n'en a pas. Style "Arcade sur Papier".</p>
+    </div>
+  </div>
+
+  <!-- Option C -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0;overflow:hidden;">
+      <div style="width:100%;height:280px;position:relative;font-family:monospace;overflow:hidden;">
+        <!-- Full bleed cover -->
+        <div style="width:100%;height:100%;background:linear-gradient(135deg,#8BD3DD 0%,#F582AE 50%,#F3D2C1 100%);"></div>
+        <!-- Dark overlay bottom -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(transparent,rgba(0,24,88,0.85));"></div>
+        <!-- Text on top -->
+        <div style="position:absolute;bottom:20px;left:24px;right:24px;">
+          <div style="font-size:10px;color:#F582AE;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;">Adriflex</div>
+          <div style="font-size:22px;font-weight:bold;color:#FEF6E4;line-height:1.3;">Texture Diffusion v3</div>
+          <div style="font-size:11px;color:#F3D2C1;opacity:0.8;margin-top:4px;">AI-powered texturing for Blender</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Cover plein écran + overlay</h3>
+      <p>L'image cover prend toute la place, avec un dégradé sombre en bas pour le titre. Très visuel, mais nécessite une bonne cover sur chaque article.</p>
+    </div>
+  </div>
+
+</div>

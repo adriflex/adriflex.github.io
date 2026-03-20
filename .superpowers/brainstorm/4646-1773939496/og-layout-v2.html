@@ -1,0 +1,103 @@
+<h2>Nouveau layout : cover plein écran + étiquette texte</h2>
+<p class="subtitle">L'image cover prend toute la place, le texte est en overlay. 3 variantes de placement.</p>
+
+<div class="cards">
+
+  <!-- Option A: étiquette bas-gauche -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0;overflow:hidden;">
+      <div style="width:100%;height:300px;position:relative;font-family:monospace;">
+        <!-- Full cover -->
+        <div style="width:100%;height:100%;background:linear-gradient(135deg, #2a3a5c 0%, #1a2540 40%, #0d1520 100%);display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:80px;opacity:0.15;">🎮</div>
+        </div>
+        <!-- Dark gradient bottom -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(transparent, rgba(0,0,0,0.75));"></div>
+        <!-- Text label bottom-left -->
+        <div style="position:absolute;bottom:24px;left:28px;right:28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="font-size:10px;color:#F582AE;text-transform:uppercase;letter-spacing:2px;">Adriflex</span>
+            <span style="font-size:9px;padding:2px 8px;background:#F582AE;color:#001858;">Published</span>
+          </div>
+          <div style="font-size:24px;font-weight:bold;color:#FEF6E4;line-height:1.2;margin-bottom:6px;">Orb of Avarice</div>
+          <div style="font-size:10px;color:#F3D2C1;opacity:0.8;">Mini-jeu de donjon. Protège ton trésor en écrasant les intrus.</div>
+          <div style="display:flex;gap:5px;margin-top:8px;">
+            <span style="font-size:8px;padding:2px 6px;border:1px solid rgba(254,246,228,0.3);color:#FEF6E4;opacity:0.7;">jeu</span>
+            <span style="font-size:8px;padding:2px 6px;border:1px solid rgba(254,246,228,0.3);color:#FEF6E4;opacity:0.7;">godot</span>
+            <span style="font-size:8px;padding:2px 6px;border:1px solid rgba(254,246,228,0.3);color:#FEF6E4;opacity:0.7;">3d</span>
+          </div>
+        </div>
+        <!-- Pink bar -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:#F582AE;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Étiquette bas-gauche</h3>
+      <p>Cover plein écran + dégradé sombre en bas + texte overlay. Le plus immersif, met la cover en valeur. Le dégradé protège la lisibilité.</p>
+    </div>
+  </div>
+
+  <!-- Option B: encart bas-gauche avec fond semi-transparent -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0;overflow:hidden;">
+      <div style="width:100%;height:300px;position:relative;font-family:monospace;">
+        <!-- Full cover -->
+        <div style="width:100%;height:100%;background:linear-gradient(135deg, #2a3a5c 0%, #1a2540 40%, #0d1520 100%);display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:80px;opacity:0.15;">🎮</div>
+        </div>
+        <!-- Card/encart bottom-left -->
+        <div style="position:absolute;bottom:20px;left:20px;background:rgba(254,246,228,0.92);padding:18px 22px;max-width:55%;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <span style="font-size:10px;color:#F582AE;text-transform:uppercase;letter-spacing:2px;">Adriflex</span>
+            <span style="font-size:9px;padding:2px 8px;background:#F582AE;color:#001858;">Published</span>
+          </div>
+          <div style="font-size:20px;font-weight:bold;color:#001858;line-height:1.2;margin-bottom:4px;">Orb of Avarice</div>
+          <div style="font-size:10px;color:#172C66;opacity:0.6;">Mini-jeu de donjon. Protège ton trésor.</div>
+          <div style="display:flex;gap:5px;margin-top:8px;">
+            <span style="font-size:8px;padding:2px 6px;border:1px solid rgba(0,24,88,0.15);color:#001858;opacity:0.6;">jeu</span>
+            <span style="font-size:8px;padding:2px 6px;border:1px solid rgba(0,24,88,0.15);color:#001858;opacity:0.6;">godot</span>
+            <span style="font-size:8px;padding:2px 6px;border:1px solid rgba(0,24,88,0.15);color:#001858;opacity:0.6;">3d</span>
+          </div>
+        </div>
+        <!-- Pink bar -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:#F582AE;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Encart parchment</h3>
+      <p>Cover plein écran + carte semi-transparente couleur parchment en bas à gauche. Style "vignette de musée". Plus de cover visible, très brandé.</p>
+    </div>
+  </div>
+
+  <!-- Option C: bandeau bas plein largeur -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0;overflow:hidden;">
+      <div style="width:100%;height:300px;position:relative;font-family:monospace;">
+        <!-- Full cover (top ~65%) -->
+        <div style="width:100%;height:65%;background:linear-gradient(135deg, #2a3a5c 0%, #1a2540 40%, #0d1520 100%);display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:80px;opacity:0.15;">🎮</div>
+        </div>
+        <!-- Solid bar bottom -->
+        <div style="width:100%;height:35%;background:#FEF6E4;padding:14px 28px;display:flex;flex-direction:column;justify-content:center;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+            <span style="font-size:10px;color:#F582AE;text-transform:uppercase;letter-spacing:2px;">Adriflex</span>
+            <span style="font-size:9px;padding:2px 8px;background:#F582AE;color:#001858;">Published</span>
+          </div>
+          <div style="font-size:20px;font-weight:bold;color:#001858;line-height:1.2;margin-bottom:4px;">Orb of Avarice</div>
+          <div style="display:flex;gap:5px;">
+            <span style="font-size:8px;padding:2px 6px;border:1px solid rgba(0,24,88,0.15);color:#001858;opacity:0.6;">jeu</span>
+            <span style="font-size:8px;padding:2px 6px;border:1px solid rgba(0,24,88,0.15);color:#001858;opacity:0.6;">godot</span>
+            <span style="font-size:8px;padding:2px 6px;border:1px solid rgba(0,24,88,0.15);color:#001858;opacity:0.6;">3d</span>
+          </div>
+        </div>
+        <!-- Pink bar -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:#F582AE;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Bandeau bas parchment</h3>
+      <p>Cover en haut (~65%) + bandeau solide parchment en bas (~35%) avec titre + tags. Plus structuré, moins immersif mais cadrage cover toujours mieux que le split.</p>
+    </div>
+  </div>
+
+</div>

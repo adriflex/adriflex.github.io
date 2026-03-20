@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.15",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^5.17.1",
+    "satori": "^0.25.0",
     "tailwindcss": "^4.2.1"
   }
 }
