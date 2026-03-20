@@ -6,9 +6,28 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  schema?: Record<string, any>;
 }
-const { title, description = "Artiste 3D & Illustrateur basé à Bordeaux — personnages, mondes et outils.", ogImage } = Astro.props;
+const { title, description = "Artiste 3D & Illustrateur basé à Bordeaux — personnages, mondes et outils.", ogImage, schema } = Astro.props;
 const canonicalTitle = title === "Accueil" ? "Adriflex" : `${title} — Adriflex`;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Adrien Rouquié",
+  "alternateName": "Adriflex",
+  "url": "https://adriflex.github.io",
+  "jobTitle": "Artiste 3D & Illustrateur",
+  "description": "Artiste 3D et illustrateur basé à Bordeaux — personnages, mondes et outils.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Bordeaux", "addressCountry": "FR" },
+  "sameAs": [
+    "https://www.artstation.com/adriflex",
+    "https://www.instagram.com/adrien.flex",
+    "https://www.linkedin.com/in/adrien-rouquie/",
+    "https://github.com/adriflex",
+    "https://bsky.app/profile/adriflex.bsky.social"
+  ]
+};
 ---
 <!doctype html>
 <html lang="fr">
@@ -44,6 +63,12 @@ const canonicalTitle = title === "Accueil" ? "Adriflex" : `${title} — Adriflex
 
     <!-- Umami Analytics -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="aaf2a438-01c8-4452-ab20-52c554666bc2"></script>
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
   </head>
   <body class="bg-bg text-navy font-body min-h-screen flex flex-col">
 

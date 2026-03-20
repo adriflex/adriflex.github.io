@@ -16,8 +16,19 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 const slug = entry.id.replace(/\.md$/, '');
 const ogImage = new URL(`og/projects/${slug}.png`, Astro.site).href;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": entry.data.title,
+  "description": entry.data.description,
+  "url": Astro.url.href,
+  "image": ogImage,
+  "dateCreated": entry.data.date.toISOString().split('T')[0],
+  "keywords": entry.data.tags.join(', '),
+  "author": { "@type": "Person", "name": "Adrien Rouquié", "url": "https://adriflex.github.io" },
+};
 ---
-<Base title={entry.data.title} description={entry.data.description} ogImage={ogImage}>
+<Base title={entry.data.title} description={entry.data.description} ogImage={ogImage} schema={schema}>
   <article>
     <div class="max-w-[1120px] mx-auto px-6 md:px-12 py-12">
 
