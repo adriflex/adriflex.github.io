@@ -41,6 +41,10 @@ Torso à allonger, jambes à raccourcir, oreilles à affiner, introduire de l'as
 
 Après les retakes, j'ai pu tester [Texture Diffusion v2](/lab/2026-02-26-texture-diffusion-v3) sur KESH. Projection de texture à la vitesse de l'éclair — le pipeline concept art → modèle → texture commence à tourner pour de vrai.
 
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px; border: 2px solid #001858;">
+  <iframe src="https://www.youtube.com/embed/j0PzahvV_GM" title="Texture Diffusion v2 — AI Texturing in Blender" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+</div>
+
 Prochaine étape : envoyer KESH dans Godot et commencer le prototype. Une scène, un personnage qui marche, la preuve que le pipeline tient de bout en bout.
 
 → Voir aussi : [Ashenmoor — l'univers](/lab/ashenmoor)

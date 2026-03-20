@@ -33,6 +33,6 @@ L'add-on propose aussi un workflow complet de texturing multi-vues : on place le
 
 ---
 
-Le prototype tourne. Pour l'instant je l'utilise moi-même sur mes projets pour voir si tout fonctionne bien. Ce qui manque avant la sortie publique : peaufiner l'UX et faire une démo vidéo.
+Le prototype tourne. Pour l'instant je l'utilise moi-même sur mes projets pour voir si tout fonctionne bien.
 
 → Voir aussi : [Texture Diffusion v1](/projects/texture-diffusion)
