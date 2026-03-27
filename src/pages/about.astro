@@ -1,86 +1,332 @@
 ---
 import Base from '../layouts/Base.astro';
+
+/**
+ * Showcase strip — each item links to ArtStation (or any URL).
+ * Replace hrefs with specific ArtStation project URLs when available.
+ */
+const showcase = [
+  { img: 'https://cdna.artstation.com/p/assets/covers/images/093/592/718/large/adrien-rouquie-adrien-rouquie-header2.webp?1762962512',           alt: 'Orb of Avarice',    href: 'https://www.artstation.com/artwork/x3X021' },
+  { img: 'https://cdna.artstation.com/p/assets/videos/images/080/696/224/large/adrien-rouquie-maxresdefault.jpg?1728293490',                     alt: 'Airbnb IT',         href: 'https://www.artstation.com/artwork/dyyrW3' },
+  { img: 'https://cdnb.artstation.com/p/assets/covers/images/091/265/609/large/adrien-rouquie-adrien-rouquie-capture-d-ecran-2025-08-27-162813.webp?1756312147', alt: 'Red Tractor', href: 'https://www.artstation.com/artwork/4NO9RL' },
+  { img: 'https://cdna.artstation.com/p/assets/covers/images/081/388/500/large/adrien-rouquie-adrien-rouquie-miniature-square.jpg?1730136085',   alt: 'Molly',             href: 'https://www.artstation.com/artwork/eRgKyZ' },
+  { img: 'https://cdna.artstation.com/p/assets/images/images/034/162/684/large/adrien-rouquie-007-002.jpg?1611581820',                           alt: 'Tata Martini',      href: 'https://www.artstation.com/artwork/bKYRrn' },
+  { img: 'https://cdna.artstation.com/p/assets/covers/images/080/699/496/large/adrien-rouquie-adrien-rouquie-50545c41-phpxzreh4.jpg?1728300137', alt: 'T\'choupi',         href: 'https://www.artstation.com/artwork/1NNlq3' },
+];
 ---
 <Base title="About" description="Adrien Rouquié — artiste 3D, illustrateur et créateur de mondes imaginaires, basé à Bordeaux.">
   <section>
-  <div class="max-w-[1120px] mx-auto px-6 md:px-12 py-24">
 
-    <!-- Image left + Text right -->
-    <div class="flex flex-col md:flex-row gap-12 lg:gap-16 mb-16">
+    <div class="max-w-[1120px] mx-auto px-6 md:px-12 pt-16 pb-24">
 
-      <!-- Image — square, ~38% width, centered vertically -->
-      <div class="md:w-[38%] shrink-0 self-center">
-        <div class="rounded-[2px] border-2 border-navy overflow-hidden aspect-square">
-          <img
-            src="/images/artistvsart.png"
-            alt="Adrien Rouquié — personnages 3D et illustrations"
-            class="w-full h-full object-cover lightbox-trigger cursor-zoom-in"
-          />
+      <!-- ═══════════════════════════════════════════════
+           IDENTITY — Avatar + Name + Tagline
+           ═══════════════════════════════════════════════ -->
+      <div class="flex flex-col sm:flex-row items-start gap-6 mb-14" style="animation: fadeSlideUp 0.5s ease 0.2s both;">
+
+        <!-- Avatar -->
+        <div class="shrink-0">
+          <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-[3px] border-navy bg-bg overflow-hidden shadow-[3px_3px_0_rgba(0,24,88,0.08)]">
+            <img
+              src="/images/avatar.jpg"
+              alt="Adrien Rouquié"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        <div class="pt-1">
+          <h1 class="font-display text-[24px] sm:text-[32px] font-bold text-navy px-font mb-2">Adrien Rouquié</h1>
+          <p class="font-body text-[13px] text-para/40 italic">
+            Des formes vivantes, une lumière qui raconte, un pied dans l'étrange.
+          </p>
         </div>
       </div>
 
-      <!-- Text — vertically centered -->
-      <div class="flex-1 flex flex-col justify-center">
+      <!-- ═══════════════════════════════════════════════
+           BIO
+           ═══════════════════════════════════════════════ -->
+      <div class="max-w-[680px] mb-16" style="animation: fadeSlideUp 0.55s ease 0.28s both;">
 
-        <h1 class="font-display text-[32px] font-bold text-navy px-font mb-4">Adrien Rouquié</h1>
-
-        <p class="font-body text-[14px] text-para/45 italic mb-10">
-          Des formes vivantes, une lumière qui raconte, un pied dans l'étrange.
+        <p class="font-body text-[14px] md:text-[15px] text-para leading-[1.9] tracking-[-0.3px] mb-5">
+          Artiste 3D & illustrateur basé à Bordeaux. Je crée des mondes, des personnages
+          et les expériences qui les font vivre — jeux, films, outils, BD.
         </p>
 
-        <p class="font-body text-[14px] md:text-[15px] text-para leading-[1.85] tracking-[-0.3px] mb-6">
-          Artiste 3D & illustrateur basé à Bordeaux. Je crée des mondes, des personnages et les expériences qui les font vivre — jeux, films, outils, BD.
+        <p class="font-body text-[14px] md:text-[15px] text-para/65 leading-[1.9] tracking-[-0.3px] mb-5">
+          Formation Supinfocom Arles (Mopa) et École Estienne. J'ai contribué à
+          des projets pour <strong class="text-navy font-normal">Airbnb</strong>,
+          <strong class="text-navy font-normal">McDonald's</strong> et
+          <strong class="text-navy font-normal">Chanel</strong>, et travaillé sur des IPs comme
+          <strong class="text-navy font-normal">Winnie the Pooh</strong>,
+          <strong class="text-navy font-normal">TMNT</strong>,
+          <strong class="text-navy font-normal">Hello Kitty</strong> et
+          <strong class="text-navy font-normal">T'choupi</strong> — au sein de studios
+          comme Framestore, Passion Pictures, Fortiche et Golden Wolf.
         </p>
 
-        <p class="font-body text-[14px] md:text-[15px] text-para/70 leading-[1.85] tracking-[-0.3px] mb-6">
-          Formation Supinfocom Arles (Mopa) et École Estienne. Character Artist chez
-          <strong class="text-navy">Passion Pictures</strong> (Londres), CG Supervisor sur
-          <em>T'choupi à la campagne</em>, actuellement Artiste 3D chez
-          <strong class="text-navy">Golden Wolf</strong>.
+        <p class="font-body text-[14px] md:text-[15px] text-para/65 leading-[1.9] tracking-[-0.3px]">
+          En parallèle : jeux vidéo (Godot), addons Blender, apps web, BD.
+          Le site que vous visitez en est la vitrine.
         </p>
-
-        <p class="font-body text-[14px] md:text-[15px] text-para/70 leading-[1.85] tracking-[-0.3px]">
-          En parallèle : jeux vidéo (Godot), addons Blender, apps web, BD. Le site que vous visitez en est la vitrine.
-        </p>
-
       </div>
-    </div>
 
-    <!-- Pixel separator -->
-    <div class="px-sep mb-12"></div>
+      <!-- ═══════════════════════════════════════════════
+           SHOWCASE — vertical thumbnails linking to ArtStation
+           ═══════════════════════════════════════════════ -->
+      <div class="mb-16" style="animation: fadeSlideUp 0.55s ease 0.36s both;">
+        <h2 class="font-display text-[8px] font-normal text-para/40 uppercase tracking-[3px] mb-8 flex items-center gap-4 px-font">
+          Selected work
+          <span class="flex-1 h-px bg-navy/6"></span>
+        </h2>
 
-    <!-- Me trouver -->
-    <h2 class="font-display text-[8px] font-normal text-para/40 uppercase tracking-[3px] mb-8 flex items-center gap-4 px-font">
-      Me trouver
-      <span class="flex-1 h-px bg-navy/6"></span>
-    </h2>
+        <div class="grid grid-cols-3 md:grid-cols-6 gap-3">
+          {showcase.map((item, i) => (
+            <a
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${item.alt} - View on ArtStation`}
+              class="relative group overflow-hidden rounded-[2px] border-2 border-navy/10 hover:border-navy/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[4px_4px_0_rgba(0,24,88,0.08)]"
+              style={`aspect-ratio: 3 / 4; animation: fadeSlideUp 0.4s ease ${0.38 + i * 0.05}s both;`}
+            >
+              <img
+                src={item.img}
+                alt={item.alt}
+                loading={i >= 3 ? 'lazy' : 'eager'}
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-navy/0 group-hover:bg-navy/60 transition-all duration-300 flex items-center justify-center">
+                <span class="font-display text-[8px] text-bg uppercase tracking-[2px] px-font opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center leading-relaxed">
+                  View on<br/>ArtStation ↗
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-16">
-      {[
-        { label: 'ArtStation', sub: '56 artworks', href: 'https://artstation.com/adriflex', img: '/images/card-artstation.png', pos: 'object-[center_35%]' },
-        { label: 'Instagram', sub: '309 followers', href: 'https://instagram.com/adrien.flex', img: '/images/card-instagram.png', pos: 'object-[center_40%]' },
-        { label: 'LinkedIn', sub: '1k+ abonnés', href: 'https://linkedin.com/in/adrienrouquie', img: '/images/card-linkedin.png', pos: 'object-top' },
-      ].map(link => (
-        <a
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="relative group overflow-hidden rounded-[2px] border-2 border-navy h-40 md:h-48 flex flex-col justify-end transition-all duration-300 hover:-translate-y-1 hover:shadow-[4px_4px_0_rgba(0,24,88,0.1)]"
-        >
-          <img
-            src={link.img}
-            alt={link.label}
-            class={`absolute inset-0 w-full h-full object-cover ${link.pos} group-hover:scale-105 transition-transform duration-500`}
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/30 to-transparent group-hover:from-navy/70 transition-all duration-300"></div>
-          <div class="relative z-10 p-5">
-            <span class="font-display px-font text-[16px] text-bg block mb-1">{link.label} ↗</span>
-            <span class="font-body text-[12px] text-bg/50">{link.sub}</span>
+      <!-- Pixel separator -->
+      <div class="px-sep mb-14"></div>
+
+      <!-- ═══════════════════════════════════════════════
+           COLLABORATIONS — arcade credits style
+           ═══════════════════════════════════════════════ -->
+      <div class="mb-16" style="animation: fadeSlideUp 0.55s ease 0.44s both;">
+
+        <h2 class="font-display text-[8px] font-normal text-para/40 uppercase tracking-[3px] mb-12 flex items-center gap-4 px-font">
+          Collaborations
+          <span class="flex-1 h-px bg-navy/6"></span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-10">
+
+          <!-- Brands -->
+          <div>
+            <div class="flex items-center gap-3 mb-5">
+              <span class="w-2 h-2 bg-pink shrink-0" style="image-rendering: pixelated;"></span>
+              <h3 class="font-display text-[8px] font-normal text-navy uppercase tracking-[3px] px-font">Marques</h3>
+            </div>
+            <div class="space-y-3 pl-5">
+              <p class="font-display text-[16px] text-navy/80 px-font">Airbnb</p>
+              <p class="font-display text-[16px] text-navy/80 px-font">McDonald's</p>
+              <p class="font-display text-[16px] text-navy/80 px-font">Chanel</p>
+            </div>
           </div>
-        </a>
-      ))}
-    </div>
 
-  </div>
+          <!-- IPs & Franchises -->
+          <div>
+            <div class="flex items-center gap-3 mb-5">
+              <span class="w-2 h-2 bg-accent shrink-0" style="image-rendering: pixelated;"></span>
+              <h3 class="font-display text-[8px] font-normal text-navy uppercase tracking-[3px] px-font">IPs & Franchises</h3>
+            </div>
+            <div class="space-y-3 pl-5">
+              <p class="font-display text-[16px] text-navy/80 px-font">Winnie the Pooh</p>
+              <p class="font-display text-[16px] text-navy/80 px-font">Ninja Turtles</p>
+              <p class="font-display text-[16px] text-navy/80 px-font">Hello Kitty</p>
+              <p class="font-display text-[16px] text-navy/80 px-font">T'choupi</p>
+            </div>
+          </div>
+
+          <!-- Studios -->
+          <div>
+            <div class="flex items-center gap-3 mb-5">
+              <span class="w-2 h-2 bg-peach shrink-0" style="image-rendering: pixelated;"></span>
+              <h3 class="font-display text-[8px] font-normal text-navy uppercase tracking-[3px] px-font">Studios</h3>
+            </div>
+            <div class="space-y-3 pl-5">
+              <p class="font-display text-[16px] text-navy/80 px-font">Framestore</p>
+              <p class="font-display text-[16px] text-navy/80 px-font">Fortiche Production</p>
+              <p class="font-display text-[16px] text-navy/80 px-font">Passion Pictures</p>
+              <p class="font-display text-[16px] text-navy/80 px-font">Golden Wolf</p>
+              <p class="font-display text-[16px] text-navy/80 px-font">Nexus Studios</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Pixel separator -->
+      <div class="px-sep mb-14"></div>
+
+      <!-- ═══════════════════════════════════════════════
+           CONTACT FORM
+           ═══════════════════════════════════════════════ -->
+      <div class="mb-16" style="animation: fadeSlideUp 0.55s ease 0.52s both;">
+        <h2 id="contact-heading" class="font-display text-[8px] font-normal text-para/40 uppercase tracking-[3px] mb-10 flex items-center gap-4 px-font">
+          Contact
+          <span class="flex-1 h-px bg-navy/6"></span>
+        </h2>
+
+        <div class="max-w-[540px]">
+          <p class="font-body text-[14px] text-para/50 leading-[1.8] tracking-[-0.3px] mb-8">
+            Un projet, une collaboration, ou juste envie de dire bonjour ?
+          </p>
+
+          <form
+            id="contact-form"
+            action="https://formspree.io/f/xqegajdd"
+            method="POST"
+            class="space-y-5"
+          >
+            <!-- Honeypot -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <!-- Name -->
+            <div>
+              <label for="name" class="font-display text-[8px] text-navy/60 uppercase tracking-[3px] px-font block mb-2">Nom</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full font-body text-[14px] text-navy bg-transparent border-2 border-navy/12 rounded-[2px] px-4 py-3 outline-none transition-all duration-200 focus:border-pink placeholder:text-para/20"
+                placeholder="Votre nom"
+              />
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="email" class="font-display text-[8px] text-navy/60 uppercase tracking-[3px] px-font block mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full font-body text-[14px] text-navy bg-transparent border-2 border-navy/12 rounded-[2px] px-4 py-3 outline-none transition-all duration-200 focus:border-pink placeholder:text-para/20"
+                placeholder="votre@email.com"
+              />
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label for="message" class="font-display text-[8px] text-navy/60 uppercase tracking-[3px] px-font block mb-2">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="5"
+                class="w-full font-body text-[14px] text-navy bg-transparent border-2 border-navy/12 rounded-[2px] px-4 py-3 outline-none transition-all duration-200 focus:border-pink placeholder:text-para/20 resize-vertical"
+                placeholder="Votre message..."
+              ></textarea>
+            </div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              class="font-display text-[16px] text-bg bg-navy px-6 py-3 rounded-[2px] uppercase tracking-[2px] px-font transition-all duration-200 hover:bg-pink hover:shadow-[3px_3px_0_rgba(0,24,88,0.1)] active:translate-y-[1px]"
+            >
+              Envoyer ↗
+            </button>
+          </form>
+
+          <!-- Success / Error messages -->
+          <div id="form-success" class="hidden mt-6 font-body text-[14px] text-navy/70 border-2 border-accent/30 bg-accent/5 rounded-[2px] px-4 py-3">
+            Message envoyé ! Je reviens vers vous rapidement.
+          </div>
+          <div id="form-error" class="hidden mt-6 font-body text-[14px] text-navy/70 border-2 border-pink/30 bg-pink/5 rounded-[2px] px-4 py-3">
+            Une erreur est survenue. Vous pouvez aussi me contacter sur LinkedIn.
+          </div>
+        </div>
+      </div>
+
+      <!-- Pixel separator -->
+      <div class="px-sep mb-14"></div>
+
+      <!-- ═══════════════════════════════════════════════
+           SOCIAL LINKS
+           ═══════════════════════════════════════════════ -->
+      <div style="animation: fadeSlideUp 0.55s ease 0.6s both;">
+        <h2 class="font-display text-[8px] font-normal text-para/40 uppercase tracking-[3px] mb-8 flex items-center gap-4 px-font">
+          Me trouver
+          <span class="flex-1 h-px bg-navy/6"></span>
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-16">
+          {[
+            { label: 'ArtStation', sub: '56 artworks', href: 'https://artstation.com/adriflex', img: '/images/card-artstation.png', pos: 'object-[center_35%]' },
+            { label: 'Instagram', sub: '309 followers', href: 'https://instagram.com/adrien.flex', img: '/images/card-instagram.png', pos: 'object-[center_40%]' },
+            { label: 'LinkedIn', sub: '1k+ abonnés', href: 'https://www.linkedin.com/in/adrien-rouquie/', img: '/images/card-linkedin.png', pos: 'object-top' },
+          ].map((link, i) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="relative group overflow-hidden rounded-[2px] border-2 border-navy h-40 md:h-48 flex flex-col justify-end transition-all duration-300 hover:-translate-y-1 hover:shadow-[4px_4px_0_rgba(0,24,88,0.1)]"
+              style={`animation: fadeSlideUp 0.4s ease ${0.52 + i * 0.06}s both;`}
+            >
+              <img
+                src={link.img}
+                alt={link.label}
+                class={`absolute inset-0 w-full h-full object-cover ${link.pos} group-hover:scale-105 transition-transform duration-500`}
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/30 to-transparent group-hover:from-navy/70 transition-all duration-300"></div>
+              <div class="relative z-10 p-5">
+                <span class="font-display px-font text-[16px] text-bg block mb-1">{link.label} ↗</span>
+                <span class="font-body text-[12px] text-bg/50">{link.sub}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </div>
   </section>
+
+  <!-- Contact form AJAX submit -->
+  <script>
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
+    const error = document.getElementById('form-error');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      success?.classList.add('hidden');
+      error?.classList.add('hidden');
+
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+      const originalText = btn?.textContent;
+      if (btn) { btn.textContent = 'Envoi...'; btn.disabled = true; }
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' },
+        });
+
+        if (res.ok) {
+          form.reset();
+          success?.classList.remove('hidden');
+        } else {
+          error?.classList.remove('hidden');
+        }
+      } catch {
+        error?.classList.remove('hidden');
+      }
+
+      if (btn) { btn.textContent = originalText ?? ''; btn.disabled = false; }
+    });
+  </script>
 </Base>
