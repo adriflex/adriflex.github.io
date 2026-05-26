@@ -130,19 +130,128 @@ const schema = {
       <!-- Séparateur pixel -->
       <div class="px-sep mb-10"></div>
 
-      <!-- Contenu Markdown -->
-      <div class="prose prose-neutral max-w-[720px] font-body text-[15px]
-        prose-headings:font-display prose-headings:font-bold prose-headings:text-navy
-        prose-h2:text-[16px] prose-h3:text-[16px]
-        prose-p:text-para prose-p:leading-[1.85]
-        prose-a:text-pink prose-a:no-underline prose-a:hover:underline prose-a:underline-offset-4
-        prose-strong:text-navy
-        prose-img:rounded-[2px] prose-img:border-2 prose-img:border-navy">
-        <Content />
+      <div class="lg:grid lg:grid-cols-[minmax(0,720px)_240px] lg:gap-12 lg:items-start">
+        <!-- Contenu Markdown -->
+        <div id="project-content" class="prose prose-neutral max-w-[720px] font-body text-[15px]
+          prose-headings:font-display prose-headings:font-bold prose-headings:text-navy
+          prose-h2:text-[24px] prose-h2:leading-[1.35] prose-h2:mt-14 prose-h2:mb-5
+          prose-h3:font-body prose-h3:text-[16px] prose-h3:leading-[1.6] prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-para
+          prose-p:text-para prose-p:leading-[1.85]
+          prose-a:text-pink prose-a:no-underline prose-a:hover:underline prose-a:underline-offset-4
+          prose-strong:text-navy
+          prose-img:rounded-[2px] prose-img:border-2 prose-img:border-navy">
+          <Content />
+        </div>
+
+        <aside id="project-toc-wrap" class="hidden lg:block sticky top-8 self-start border-l-2 border-navy/10 pl-5 pr-2 max-h-[calc(100vh-4rem)] overflow-y-auto overflow-x-hidden">
+          <p class="font-display px-font text-[8px] text-navy/40 uppercase tracking-[3px] mb-4">On this page</p>
+          <nav id="project-toc" class="flex flex-col gap-2"></nav>
+        </aside>
       </div>
 
 
     </div>
   </article>
   <Lightbox />
+
+  <script>
+    const content = document.getElementById('project-content');
+    const toc = document.getElementById('project-toc');
+    const tocWrap = document.getElementById('project-toc-wrap');
+
+    if (content && toc && tocWrap) {
+      const slugify = (text: string) => text
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+
+      const headings = Array.from(content.querySelectorAll('h2, h3')) as HTMLHeadingElement[];
+      const usedIds = new Set<string>();
+
+      headings.forEach((heading) => {
+        const base = heading.id || slugify(heading.textContent || 'section');
+        let id = base;
+        let index = 2;
+
+        while (usedIds.has(id) || (document.getElementById(id) && document.getElementById(id) !== heading)) {
+          id = `${base}-${index}`;
+          index += 1;
+        }
+
+        heading.id = id;
+        usedIds.add(id);
+
+        const link = document.createElement('a');
+        link.href = `#${id}`;
+        link.textContent = heading.textContent || '';
+        link.dataset.headingId = id;
+        link.className = heading.tagName === 'H2'
+          ? 'toc-link toc-link-h2'
+          : 'toc-link toc-link-h3';
+        toc.appendChild(link);
+      });
+
+      if (headings.length < 3) {
+        tocWrap.remove();
+      }
+
+      const links = Array.from(toc.querySelectorAll<HTMLAnchorElement>('a'));
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          links.forEach((link) => {
+            link.toggleAttribute('data-active', link.dataset.headingId === entry.target.id);
+          });
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+      headings.forEach((heading) => observer.observe(heading));
+    }
+  </script>
+
+  <style>
+    :global(html) {
+      scroll-behavior: smooth;
+    }
+
+    :global(#project-content h2),
+    :global(#project-content h3) {
+      scroll-margin-top: 24px;
+    }
+
+    :global(#project-content h3) {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: auto;
+      text-rendering: auto;
+    }
+
+    :global(.toc-link) {
+      display: block;
+      color: color-mix(in srgb, var(--color-para) 62%, transparent);
+      line-height: 1.45;
+      text-decoration: none;
+      transition: color 160ms ease, transform 160ms ease;
+    }
+
+    :global(.toc-link:hover),
+    :global(.toc-link[data-active]) {
+      color: var(--color-pink);
+    }
+
+    :global(.toc-link-h2) {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin-top: 8px;
+    }
+
+    :global(.toc-link-h3) {
+      font-family: var(--font-body);
+      font-size: 12px;
+      padding-left: 12px;
+    }
+  </style>
 </Base>
