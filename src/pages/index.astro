@@ -176,7 +176,6 @@ allTags.forEach(tag => {
 
     const tagBtns = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
     const cards = document.querySelectorAll<HTMLElement>('.card-wrapper');
-    const sections = document.querySelectorAll<HTMLElement>('[data-section]');
     const filterInfo = document.getElementById('filter-info');
     const totalCount = cards.length;
 
@@ -233,17 +232,6 @@ allTags.forEach(tag => {
           wrapper.style.pointerEvents = 'none';
         }
         wrapper.style.transition = 'opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease';
-      });
-
-      // Hide empty year sections
-      sections.forEach(section => {
-        const sectionCards = section.querySelectorAll<HTMLElement>('.card-wrapper');
-        let hasVisible = false;
-        sectionCards.forEach(c => {
-          const tags = (c.dataset.tags || '').split(',');
-          if (!activeTag || tags.includes(activeTag)) hasVisible = true;
-        });
-        section.style.display = hasVisible ? '' : 'none';
       });
 
       if (filterInfo) {
