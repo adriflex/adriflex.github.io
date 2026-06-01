@@ -1,7 +1,7 @@
 ---
 title: "Ashenmoor — KESH prend forme"
 date: 2026-03-02
-tags: [univers, dark-fantasy, blender, godot, ia, 3d]
+tags: [univers, dark-fantasy, blender, godot, ai, 3d]
 cover: "/images/kesh-preview.png"
 ---
 

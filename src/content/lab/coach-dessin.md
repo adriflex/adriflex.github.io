@@ -1,7 +1,7 @@
 ---
 title: "Coach Dessin"
 date: 2025-12-01
-tags: [outil, ia]
+tags: [outil, ai]
 cover: /images/lab-coach-dessin.png
 coverPosition: top
 ---

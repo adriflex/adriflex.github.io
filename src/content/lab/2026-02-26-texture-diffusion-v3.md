@@ -1,7 +1,7 @@
 ---
 title: "Texture Diffusion v2 — reconstruire l'outil depuis zéro"
 date: 2026-02-26
-tags: [blender, outil, ia, 3d]
+tags: [blender, outil, ai, 3d]
 cover: "/images/texture-diffusion-v3-cover.png"
 ---
 

@@ -123,6 +123,6 @@ La Sphere donne une échelle assez rare à ce type de travail. Un petit élémen
 **Projet :** Phish at Sphere Las Vegas  
 **Client :** Golden Wolf / Moment Factory / Sphere  
 **Rôle :** 3D Artist / 3D Generalist  
-**Outils :** Blender, Geometry Nodes, Grease Pencil, Line Art
+**Outils :** Blender, Geometry Nodes, Grease Pencil, Line Art, Texture Diffusion
 
 Merci à l'équipe Golden Wolf pour la confiance. C'était un projet très particulier à fabriquer : étrange, coloré, technique, et pensé pour un écran qui ne ressemble à aucun autre.
