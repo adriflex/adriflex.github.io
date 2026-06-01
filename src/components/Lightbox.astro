@@ -6,6 +6,7 @@
   <div id="lightbox-backdrop"></div>
   <button id="lightbox-close" aria-label="Fermer">×</button>
   <img id="lightbox-img" src="" alt="" />
+  <video id="lightbox-video" src="" autoplay loop muted playsinline controls></video>
 </div>
 
 <style>
@@ -59,7 +60,8 @@
     border-color: #F582AE;
   }
 
-  #lightbox-img {
+  #lightbox-img,
+  #lightbox-video {
     position: relative;
     z-index: 1;
     max-width: 90vw;
@@ -73,7 +75,12 @@
     transition: opacity 250ms ease, transform 250ms ease;
   }
 
-  #lightbox.is-open #lightbox-img {
+  #lightbox-video {
+    display: none;
+  }
+
+  #lightbox.is-open #lightbox-img,
+  #lightbox.is-open #lightbox-video {
     opacity: 1;
     transform: scale(1);
   }
@@ -82,10 +89,11 @@
 <script>
   const lightbox = document.getElementById('lightbox') as HTMLElement;
   const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxVideo = document.getElementById('lightbox-video') as HTMLVideoElement;
   const lightboxClose = document.getElementById('lightbox-close') as HTMLElement;
   const lightboxBackdrop = document.getElementById('lightbox-backdrop') as HTMLElement;
 
-  if (!lightbox || !lightboxImg || !lightboxClose || !lightboxBackdrop) {
+  if (!lightbox || !lightboxImg || !lightboxVideo || !lightboxClose || !lightboxBackdrop) {
     throw new Error('Lightbox: éléments DOM introuvables');
   }
 
@@ -93,6 +101,10 @@
 
   function openLightbox(src: string, alt: string) {
     previousFocus = document.activeElement as HTMLElement;
+    lightboxVideo.pause();
+    lightboxVideo.removeAttribute('src');
+    lightboxVideo.style.display = 'none';
+    lightboxImg.style.display = 'block';
     lightboxImg.src = src;
     lightboxImg.alt = alt;
     lightbox.classList.add('is-open');
@@ -101,10 +113,27 @@
     lightboxClose.focus();
   }
 
+  function openVideoLightbox(src: string) {
+    previousFocus = document.activeElement as HTMLElement;
+    lightboxImg.removeAttribute('src');
+    lightboxImg.alt = '';
+    lightboxImg.style.display = 'none';
+    lightboxVideo.style.display = 'block';
+    lightboxVideo.src = src;
+    lightboxVideo.currentTime = 0;
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lightboxVideo.play().catch(() => {});
+    lightboxClose.focus();
+  }
+
   function closeLightbox() {
     lightbox.classList.remove('is-open');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    lightboxVideo.pause();
+    lightboxVideo.removeAttribute('src');
     previousFocus?.focus();
   }
 
@@ -114,6 +143,12 @@
       // Skip lightbox on mobile — the popup image would be smaller than the original
       if (window.innerWidth < 768) return;
       openLightbox((target as HTMLImageElement).src, target.getAttribute('alt') ?? '');
+    }
+
+    if (target.matches('.prose video')) {
+      // Skip lightbox on mobile — the popup video would be smaller than the inline video
+      if (window.innerWidth < 768) return;
+      openVideoLightbox((target as HTMLVideoElement).currentSrc || (target as HTMLVideoElement).src);
     }
   });
 

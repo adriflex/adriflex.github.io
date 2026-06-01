@@ -86,7 +86,8 @@ body {
 /* Cursor zoom on markdown images — desktop only (lightbox disabled on mobile) */
 @media (min-width: 768px) {
   .prose img,
-  img.lightbox-trigger {
+  img.lightbox-trigger,
+  .prose video {
     cursor: zoom-in;
   }
 }
