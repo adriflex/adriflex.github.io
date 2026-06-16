@@ -2,7 +2,7 @@
 title: "Resin Print Toolkit"
 description: "Supports d'impression résine, générés directement dans Blender avec Geometry Nodes."
 date: 2024-10-01
-tags: [blender, outil, 3d, impression-3d]
+tags: [blender, addon, 3d, impression-3d]
 featured: false
 color: "#0f766e"
 status: published

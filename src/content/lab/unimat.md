@@ -1,7 +1,7 @@
 ---
 title: "UniMat — unifier les matériaux pour l'export"
 date: 2025-06-01
-tags: [blender, outil, 3d]
+tags: [blender, addon, 3d, texturing]
 cover: "/images/unimat-cover.png"
 ---
 

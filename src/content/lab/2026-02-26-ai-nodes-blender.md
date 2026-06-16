@@ -1,7 +1,7 @@
 ---
 title: "IA Nodes — un node graph IA dans Blender"
 date: 2026-02-26
-tags: [blender, outil, ai]
+tags: [blender, addon, ai]
 cover: "/images/ai-nodes-schema.png"
 ---
 

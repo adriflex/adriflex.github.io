@@ -2,7 +2,7 @@
 title: "Kiln"
 description: "Successeur d'UniMat — bake et export de matériaux Blender vers Godot, proprement."
 date: 2026-02-27
-tags: [blender, outil, godot, 3d]
+tags: [blender, addon, godot, 3d, texturing]
 featured: false
 color: "#1d4ed8"
 status: wip
