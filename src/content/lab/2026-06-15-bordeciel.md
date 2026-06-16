@@ -1,7 +1,7 @@
 ---
 title: "Bordeciel — Bordeaux dans les nuages"
 date: 2026-06-15
-tags: [godot, blender, 3d, jeu]
+tags: [univers, godot, blender, 3d, jeu, texturing]
 cover: "/images/bordeciel-main.jpg"
 ---
 
