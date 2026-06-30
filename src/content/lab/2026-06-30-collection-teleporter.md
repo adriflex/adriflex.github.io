@@ -4,6 +4,7 @@ date: 2026-06-30
 tags: [blender, addon, pipeline, 3d, tools]
 cover: "/images/collection-teleporter-hero.png"
 coverFull: true
+status: published
 ---
 
 Collection Teleporter is a Blender addon I made to move collections between `.blend` files without breaking the way I like to work.

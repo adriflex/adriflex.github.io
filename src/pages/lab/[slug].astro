@@ -16,6 +16,8 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 const slug = entry.id.replace(/\.md$/, '');
 const ogImage = new URL(`og/lab/${slug}.png`, Astro.site).href;
+const statusLabel = entry.data.status === 'published' ? 'Publié' : 'Lab';
+const statusClass = entry.data.status === 'published' ? 'bg-pink' : 'bg-peach';
 const schema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -58,8 +60,8 @@ const schema = {
 
       <!-- Badge + Tags -->
       <div class="flex items-center gap-2 mb-8 flex-wrap">
-        <span class="font-display px-font text-[8px] px-3 py-1 rounded-[2px] bg-peach text-navy">
-          Lab
+        <span class={`font-display px-font text-[8px] px-3 py-1 rounded-[2px] ${statusClass} text-navy`}>
+          {statusLabel}
         </span>
         {entry.data.tags.map(tag => (
           <span class="font-display px-font text-[8px] px-3 py-1 rounded-[2px] border border-navy/15 text-navy/60">

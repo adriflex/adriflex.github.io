@@ -28,6 +28,7 @@ const lab = defineCollection({
     cover: z.string().optional(),
     coverPosition: z.string().default('center'),
     coverFull: z.boolean().default(true),
+    status: z.enum(['published', 'lab']).default('lab'),
   }),
 });
 
