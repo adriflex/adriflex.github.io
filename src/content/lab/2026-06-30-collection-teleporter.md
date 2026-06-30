@@ -2,7 +2,7 @@
 title: "Collection Teleporter: a Blender addon for scenes that got too big"
 date: 2026-06-30
 tags: [blender, addon, pipeline, 3d, tools]
-cover: "/images/collection-teleporter-hero.png"
+cover: "/images/collection-teleporter-hero.webp"
 coverFull: true
 status: published
 ---
@@ -49,11 +49,11 @@ The short demo shows the basic loop: send a collection out, keep it linked in th
 
 Collection Teleporter lives in the viewport context menu, with the main menu available through `Ctrl+Alt+M`.
 
-![Collection Teleporter menu and export popup](/images/collection-teleporter-menus.png)
+![Collection Teleporter menu and export popup](/images/collection-teleporter-menus.webp)
 
 ## Export And Link Back
 
-![Collection Teleporter export and link back workflow](/images/collection-teleporter-dispatch.png)
+![Collection Teleporter export and link back workflow](/images/collection-teleporter-dispatch.webp)
 
 The main command is **Export and Link Back**. You pick a collection, choose a destination, and Collection Teleporter writes it into an external `.blend` file.
 
@@ -61,7 +61,7 @@ In the original scene, the local collection is replaced by a linked instance at 
 
 ## Edit Linked Collections In Place
 
-![A linked collection made editable in context](/images/collection-teleporter-edit.png)
+![A linked collection made editable in context](/images/collection-teleporter-edit.webp)
 
 Linked collections are great until you need to change them.
 
@@ -73,7 +73,7 @@ That is where the addon starts to feel useful. I can keep the asset external wit
 
 ## Backups At Collection Scale
 
-![Collection Teleporter backup and archive workflow](/images/collection-teleporter-backups.png)
+![Collection Teleporter backup and archive workflow](/images/collection-teleporter-backups.webp)
 
 When **Export and Link Back** replaces an existing collection in a source file, Collection Teleporter creates a backup first by default.
 
@@ -83,7 +83,7 @@ That means I can keep versions while modeling without incrementing the whole Ble
 
 ## Small Workflow Helpers
 
-![Collection Teleporter asset origin and cursor workflow](/images/collection-teleporter-origin.png)
+![Collection Teleporter asset origin and cursor workflow](/images/collection-teleporter-origin.webp)
 
 I also added a few small helpers around the main workflow.
 
@@ -94,7 +94,7 @@ Not the headline feature, but exactly the kind of thing I wanted close to the sa
 
 ## Visual Direction And Motion Design
 
-![Collection Teleporter operating manual style scene](/images/collection-teleporter-scene.png)
+![Collection Teleporter operating manual style scene](/images/collection-teleporter-scene.webp)
 
 Collection Teleporter is a fairly abstract tool. It moves collections between Blender files, keeps linked instances in place, and lets you edit them later. That is not the easiest thing to communicate with one screenshot.
 

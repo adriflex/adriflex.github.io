@@ -2,6 +2,7 @@ import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 import fs from 'node:fs';
 import path from 'node:path';
+import sharp from 'sharp';
 
 const silkscreenRegular = fs.readFileSync(
   path.resolve('src/assets/fonts/Silkscreen-Regular.ttf')
@@ -44,20 +45,23 @@ export interface OgData {
   type: 'project' | 'lab';
 }
 
-function loadCoverBase64(coverPath: string): string | undefined {
+async function loadCoverBase64(coverPath: string): Promise<string | undefined> {
   try {
     const filePath = path.resolve('public', coverPath.replace(/^\//, ''));
     const buffer = fs.readFileSync(filePath);
-    const ext = path.extname(filePath).replace('.', '');
-    const mime = ext === 'jpg' ? 'image/jpeg' : `image/${ext}`;
-    return `data:${mime};base64,${buffer.toString('base64')}`;
+    const png = await sharp(buffer)
+      .resize({ width: 1200, height: 370, fit: 'cover' })
+      .png()
+      .toBuffer();
+
+    return `data:image/png;base64,${png.toString('base64')}`;
   } catch {
     return undefined;
   }
 }
 
 export async function generateOgImage(data: OgData): Promise<Buffer> {
-  const coverDataUri = data.cover ? loadCoverBase64(data.cover) : undefined;
+  const coverDataUri = data.cover ? await loadCoverBase64(data.cover) : undefined;
   const badgeKey = data.type === 'lab' ? 'lab' : (data.status || 'published');
   const badge = BADGES[badgeKey] || BADGES.published;
 

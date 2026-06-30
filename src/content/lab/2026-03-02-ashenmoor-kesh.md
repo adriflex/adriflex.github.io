@@ -2,7 +2,7 @@
 title: "Ashenmoor — KESH prend forme"
 date: 2026-03-02
 tags: [univers, dark-fantasy, jeu, blender, godot, ai, 3d]
-cover: "/images/kesh-preview.png"
+cover: "/images/kesh-preview.webp"
 ---
 
 Ashenmoor, c'est une envie que j'ai depuis un moment : créer un univers dark fantasy, avec ses personnages, son histoire. C'est une expérimentation — je veux voir jusqu'où je peux aller seul sur ce genre de projet.
@@ -17,7 +17,7 @@ Le premier personnage à traverser ce pipeline, c'est KESH — le protagoniste. 
 
 Première étape : générer les character sheets via [Replicate](/lab/2026-02-26-ai-nodes-blender). L'IA sort une direction solide : la peau de pierre sombre, les yeux verts lumineux, le pagne effiloché.
 
-![Kesh — Character sheet généré par IA](/images/kesh-modelsheet.png)
+![Kesh — Character sheet généré par IA](/images/kesh-modelsheet.webp)
 
 ---
 
@@ -25,7 +25,7 @@ De là, je passe en modélisation. Fermer les formes principales comme ça, c'es
 
 J'essaie de garder un vocabulaire de modélisation efficace : low poly, matériaux procéduraux, palette restreinte. Et j'ai un petit faible pour les edges marqués sharp — le côté facetté du low poly, c'est graphiquement plus intéressant.
 
-![Kesh — Low poly Blender](/images/kesh-preview.png)
+![Kesh — Low poly Blender](/images/kesh-preview.webp)
 
 Le mesh est là. Le personnage est reconnaissable. Mais un modèle, ça s'évalue différemment qu'un concept — les proportions révèlent leurs défauts sous la lumière.
 
@@ -33,7 +33,7 @@ Le mesh est là. Le personnage est reconnaissable. Mais un modèle, ça s'évalu
 
 Quand je manque de recul, je me fais des retakes. J'ai généré celles-ci avec Nano Banana Pro — le côté amusant de se donner ses propres retakes. C'est redessiné comme à la main, et ça donne plein d'idées d'amélioration.
 
-![Kesh — Notes de retake sur le modèle](/images/kesh-retouches.png)
+![Kesh — Notes de retake sur le modèle](/images/kesh-retouches.webp)
 
 Torso à allonger, jambes à raccourcir, oreilles à affiner, introduire de l'asymétrie dans les bras. Ce genre de choses se voit quand on compare les silhouettes côte à côte.
 

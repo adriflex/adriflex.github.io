@@ -6,7 +6,7 @@ tags: [blender, addon, ai, texturing, 3d]
 featured: true
 color: "#96F7D2"
 status: published
-cover: "/images/texture-diffusion-v2-cover.png"
+cover: "/images/texture-diffusion-v2-cover.webp"
 coverFull: true
 ---
 
@@ -53,7 +53,7 @@ The longer demo shows the actual workflow: generation, projection, painting and 
 
 Both workflows go through the same Generate panel. This is where you pick the model, frame what gets captured from the viewport, and build the prompt.
 
-![Texture Diffusion v2 Generate panel and prompt tags](/images/td-v2-generate-panel.png)
+![Texture Diffusion v2 Generate panel and prompt tags](/images/td-v2-generate-panel.webp)
 
 ### Provider and model
 
@@ -103,7 +103,7 @@ Click **Start Live Paint**. Blender switches to Texture Paint with the stencil b
 
 Do not move the camera before painting. The projection is aligned to the view you generated from.
 
-![Live Paint panel with Color Match and Start Live Paint](/images/td-v2-live-paint-panel.png)
+![Live Paint panel with Color Match and Start Live Paint](/images/td-v2-live-paint-panel.webp)
 
 ### Color Match
 
@@ -140,7 +140,7 @@ Most AI texturing tools place several cameras around the object, generate each v
 
 Texture Diffusion does the opposite: it packs every angle into one camera frame. The AI sees the whole object in one shot, which helps the generated texture stay coherent across viewpoints.
 
-![Global Texture panel and projection scene](/images/td-v2-global-texture.png)
+![Global Texture panel and projection scene](/images/td-v2-global-texture.webp)
 
 ### Step 2. Bake masks and UVs
 
@@ -181,7 +181,7 @@ Click an object, press **Edit Tweak**, and you enter Edit Mode. Moving the mesh 
 
 The geometry of your final model is never changed. Only the projection alignment is transferred.
 
-![Assembly scene with Final, Breakdown and Tweak tools](/images/td-v2-assembly.png)
+![Assembly scene with Final, Breakdown and Tweak tools](/images/td-v2-assembly.webp)
 
 ### Step 5. Bake the final texture
 
@@ -210,7 +210,7 @@ A compact tracker at the bottom of the tab adds up the cost of every generation 
 
 Three quick links open the billing dashboards of Replicate, fal.ai and Google AI Studio in your browser.
 
-![Texture Diffusion v2 cost tracker](/images/td-v2-cost-panel.png)
+![Texture Diffusion v2 cost tracker](/images/td-v2-cost-panel.webp)
 
 ### Keyboard shortcuts
 

@@ -6,7 +6,7 @@ tags: [3d, blender, animation, client, geometry-nodes]
 featured: true
 color: "#6D4CFF"
 status: published
-cover: "/images/phish-sphere-castle-hero.jpg"
+cover: "/images/phish-sphere-castle-hero.webp"
 coverFull: true
 ---
 

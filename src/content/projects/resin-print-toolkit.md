@@ -8,7 +8,7 @@ color: "#0f766e"
 status: published
 link: "https://superhivemarket.com/products/resin-print-toolkit"
 ctaLabel: "Voir sur SuperHive Market ↗"
-cover: "/images/resin-print-toolkit-cover.png"
+cover: "/images/resin-print-toolkit-cover.webp"
 ---
 
 Quand on est habitué à Blender, la navigation et l'édition de modèles 3D sont rapides. On connaît nos raccourcis, on est chez nous. Et à chaque fois qu'il faut aller dans un autre logiciel juste pour poser des supports d'impression résine, c'est frustrant.
@@ -23,6 +23,6 @@ Geometry Nodes permet de créer à peu près n'importe quel outil procédural da
 
 Comme mon métier a longtemps été de ne faire que de la modélisation, l'impression 3D s'est présentée naturellement. J'avais acheté une Elegoo Mars, et de temps en temps quand un modèle me plaît bien, je l'imprime. C'est du hobby, pas du pro — il y a sûrement des logiciels spécialisés qui font ça mieux aujourd'hui. Mais pour mes impressions, ce pack m'a bien servi.
 
-![Impression résine avec supports générés dans Blender](/images/resin-print-result.jpg)
+![Impression résine avec supports générés dans Blender](/images/resin-print-result.webp)
 
 [SuperHive Market](https://superhivemarket.com/products/resin-print-toolkit) — [Thread Blender Artists](https://blenderartists.org/t/resin-print-toolkit-for-blender/1552635/4)

@@ -6,7 +6,7 @@ tags: [blender, addon, godot, 3d, texturing, jeu]
 featured: false
 color: "#1d4ed8"
 status: published
-cover: "/images/kiln-cover-current.png"
+cover: "/images/kiln-cover-current.webp"
 coverFull: true
 ---
 
@@ -28,7 +28,7 @@ Select a source collection, choose the maps you want, then click **Bake Kiln**.
 
 Kiln creates a separate `[YourCollection]_Kiln` collection with baked PBR materials. Your source collection is never modified, so you can rebake when the material changes and keep the export settings on the `_Kiln` collection between passes.
 
-![Bake procedural materials into export-ready textures](/images/kiln-carousel-01.png)
+![Bake procedural materials into export-ready textures](/images/kiln-carousel-01.webp)
 
 The output is meant for GLB/GLTF pipelines: Godot, Unity, web builds, or any workflow where the final asset needs image textures instead of a procedural node tree.
 
@@ -40,7 +40,7 @@ The output is meant for GLB/GLTF pipelines: Godot, Unity, web builds, or any wor
 4. Click **Bake Kiln**.
 5. Export the `_Kiln` collection with Blender's native GLB/GLTF exporter.
 
-![Kiln creates a separate baked collection](/images/kiln-carousel-02.png)
+![Kiln creates a separate baked collection](/images/kiln-carousel-02.webp)
 
 I kept GLB export outside the addon on purpose. Blender already has a solid exporter, and Kiln's job is to make sure the collection you send to it is clean.
 
@@ -50,7 +50,7 @@ Kiln works with Principled BSDF materials. Other shader setups are detected and 
 
 The main bake panel keeps the common decisions in one place: map selection, per-map resolution, bake options, naming, UV settings, bake status and validation.
 
-![Kiln bake panel and validator](/images/kiln-carousel-04.png)
+![Kiln bake panel and validator](/images/kiln-carousel-04.webp)
 
 For UVs, there are three modes:
 
@@ -58,7 +58,7 @@ For UVs, there are three modes:
 - **Existing Seams** when you already marked the useful cuts.
 - **Existing UV** when you want Kiln to use your own UV map as-is.
 
-![Kiln UV methods](/images/kiln-carousel-05.png)
+![Kiln UV methods](/images/kiln-carousel-05.webp)
 
 The validator checks the source collection before you bake: unapplied transforms, missing materials, non-Principled shaders, and the usual little problems that only become annoying after export.
 

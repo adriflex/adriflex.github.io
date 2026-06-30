@@ -6,7 +6,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "images:audit": "node tools/audit-image-weights.mjs",
+    "images:optimize": "node tools/optimize-images.mjs",
+    "images:update-refs": "node tools/update-image-references.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.15",
@@ -15,6 +18,7 @@
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^5.17.1",
     "satori": "^0.25.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1"
   }
 }

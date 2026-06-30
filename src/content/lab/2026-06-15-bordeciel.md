@@ -2,7 +2,7 @@
 title: "Bordeciel — Bordeaux dans les nuages"
 date: 2026-06-15
 tags: [univers, godot, blender, 3d, jeu, texturing]
-cover: "/images/bordeciel-main.jpg"
+cover: "/images/bordeciel-main.webp"
 ---
 
 Bordeciel est un projet personnel dans Godot : une ville volante inspirée de Bordeaux.

@@ -2,7 +2,7 @@
 title: "Ashenmoor"
 date: 2026-02-01
 tags: [univers, dark-fantasy, jeu]
-cover: "/images/ashenmoor-cover.png"
+cover: "/images/ashenmoor-cover.webp"
 ---
 
 Un royaume médiéval qui se défait. Pas de grande bataille, pas de héros salvateur — des factions qui se rongent, une population prise en étau, et quelque chose d'ancien qui profite du chaos.
@@ -13,7 +13,7 @@ C'est Ashenmoor.
 
 Il fut un temps où le royaume ressemblait à ça.
 
-![Ashenmoor — le monde d'avant](/images/ashenmoor-before.png)
+![Ashenmoor — le monde d'avant](/images/ashenmoor-before.webp)
 
 Ou du moins, c'est ce qu'on raconte.
 
@@ -21,29 +21,29 @@ Ou du moins, c'est ce qu'on raconte.
 
 Puis vinrent des gens qui surent parler. Qui comprirent que la peur, ça se gouverne.
 
-![Les Corrompus — ceux qui weaponisent la peur](/images/ashenmoor-corrupted.png)
+![Les Corrompus — ceux qui weaponisent la peur](/images/ashenmoor-corrupted.webp)
 
 ---
 
 Et d'autres qui cessèrent d'être eux-mêmes. Quelque chose les ronge de l'intérieur — chaque démon une métaphore incarnée.
 
-![Les Démons — la corruption de l'intérieur](/images/ashenmoor-demon.png)
+![Les Démons — la corruption de l'intérieur](/images/ashenmoor-demon.webp)
 
 ---
 
 Entre les deux : les autres. Sans chef, sans protection. L'instinct de survie comme seul bagage.
 
-![Le Peuple — fragile, sans chef](/images/ashenmoor-people.png)
+![Le Peuple — fragile, sans chef](/images/ashenmoor-people.webp)
 
 ---
 
 KESH ne combat pas. Il est trop petit pour ça.
 
-![KESH — protagoniste, anciennement humain](/images/ashenmoor-kesh-scale.png)
+![KESH — protagoniste, anciennement humain](/images/ashenmoor-kesh-scale.webp)
 
 Petite créature, autrefois humaine, transformation en cours. Dans un monde où personne ne regarde en bas, il est invisible. Et un témoin invisible voit tout.
 
-![KESH observe la ville](/images/ashenmoor-kesh-roof.png)
+![KESH observe la ville](/images/ashenmoor-kesh-roof.webp)
 
 ---
 

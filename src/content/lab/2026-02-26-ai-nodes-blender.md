@@ -2,14 +2,14 @@
 title: "IA Nodes — un node graph IA dans Blender"
 date: 2026-02-26
 tags: [blender, addon, ai]
-cover: "/images/ai-nodes-schema.png"
+cover: "/images/ai-nodes-schema.webp"
 ---
 
 Blender a déjà un node graph pour les matériaux, le compositing, les Geometry Nodes. L'idée : en ajouter un pour l'IA.
 
 **IA Nodes** ajoute un type de node tree dans Blender. Par exemple : un nœud texte avec un prompt simple, connecté à un nœud qui l'enrichit via Claude, connecté à un nœud qui génère une image avec FLUX, connecté à un nœud qui en fait une vidéo. On branche, `Ctrl+R`, la chaîne s'exécute. Tout passe par l'API [Replicate](https://replicate.com).
 
-![IA Nodes en action — génération d'une fiche personnage](/images/ai-nodes-screenshot.png)
+![IA Nodes en action — génération d'une fiche personnage](/images/ai-nodes-screenshot.webp)
 
 ---
 

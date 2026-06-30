@@ -2,7 +2,7 @@
 title: "Coach Dessin"
 date: 2025-12-01
 tags: [ai, dessin]
-cover: /images/lab-coach-dessin.png
+cover: /images/lab-coach-dessin.webp
 coverPosition: top
 ---
 

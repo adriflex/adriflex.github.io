@@ -2,7 +2,7 @@
 title: "Texture Diffusion v2 — reconstruire l'outil depuis zéro"
 date: 2026-02-26
 tags: [blender, addon, ai, 3d, texturing]
-cover: "/images/texture-diffusion-v3-cover.png"
+cover: "/images/texture-diffusion-v3-cover.webp"
 ---
 
 La [première version de Texture Diffusion](/projects/texture-diffusion) utilisait les normales du modèle comme guide pour ControlNet, avec Stable Diffusion en local. Ça fonctionnait. Mais l'installation de ComfyUI n'est pas facile d'accès pour tout le monde, et l'IA évoluait tellement vite que j'ai préféré attendre de voir comment les choses allaient tourner avant de continuer.
@@ -17,7 +17,7 @@ Le pipeline dans Blender :
 2. L'image part sur Replicate avec le prompt
 3. Le résultat revient configuré en **brosse stencil** — prêt à peindre directement sur le modèle
 
-<img src="/images/td-v2-panel-generate.png" alt="Panel Generate — choix du modèle, capture, prompt tags" style="max-width: 50%;" />
+<img src="/images/td-v2-panel-generate.webp" alt="Panel Generate — choix du modèle, capture, prompt tags" style="max-width: 50%;" />
 
 ---
 
@@ -29,7 +29,7 @@ J'ai aussi créé un système de prompt avancé avec un nuage de mots (tag cloud
 
 L'add-on propose aussi un workflow complet de texturing multi-vues : on place le modèle sous plusieurs angles, l'IA génère une texture pour tous les points de vue d'un coup, et on assemble le tout avec des masques d'occlusion et des sliders d'intensité par vue. J'ai pu tester ça sur [KESH pour Ashenmoor](/lab/2026-03-02-ashenmoor-kesh).
 
-<img src="/images/td-v2-panel-global.png" alt="Panel Global Texture — workflow multi-vues en 5 étapes" style="max-width: 50%;" />
+<img src="/images/td-v2-panel-global.webp" alt="Panel Global Texture — workflow multi-vues en 5 étapes" style="max-width: 50%;" />
 
 ---
 
