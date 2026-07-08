@@ -94,13 +94,13 @@ Bordeciel me sert aussi de test grandeur nature pour mes outils Blender -> Godot
 Bordeciel était devenu une grosse scène Blender un peu lourde, avec beaucoup de setdress et d'assets mélangés. J'ai donc commencé à structurer mon propre pipeline autour de plusieurs outils maison que j'ai créés pour mes projets.
 
 <div style="display: flex; flex-direction: column; gap: 12px; margin: 1.25rem 0 1.75rem;">
-  <div style="border: 2px solid rgba(0, 24, 88, 0.35); padding: 14px; background: rgba(255, 255, 254, 0.55); color: #172C66;">
+  <a href="https://superhivemarket.com/products/collection-teleporter" style="display: block; border: 2px solid #001858; padding: 14px; text-decoration: none; background: #fffffe; color: #001858;">
     <div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap;">
       <strong>Collection Teleporter</strong>
-      <span style="font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; border: 1px solid rgba(0, 24, 88, 0.35); padding: 2px 6px;">bientôt</span>
+      <span style="font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: #001858; border: 1px solid #001858; padding: 2px 6px;">disponible</span>
     </div>
-    <span style="font-size: 12px; line-height: 1.6;">Mon outil de progressive asset extraction : construire dans le contexte, envoyer une collection dans son propre fichier `.blend`, puis la retravailler sur place quand il faut.</span>
-  </div>
+    <span style="font-size: 12px; line-height: 1.6; color: #172C66;">Mon outil de progressive asset extraction : construire dans le contexte, envoyer une collection dans son propre fichier `.blend`, puis la retravailler sur place quand il faut.</span>
+  </a>
 </div>
 
 <div style="display: flex; flex-direction: column; gap: 12px; margin: 1.25rem 0 1.75rem;">
