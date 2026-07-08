@@ -35,7 +35,19 @@ Le bateau volant est venu d'un croisement assez naturel : Bordeaux, la Garonne, 
 
 Je l'ai modélisé et texturé dans Blender, puis importé dans Godot comme asset game-ready. C'est aussi le premier élément de Bordeciel que je publie à part, en modèle 3D consultable directement dans le navigateur.
 
-J'ai aussi enregistré une bonne partie de la modélisation. Un timelapse du bateau est en cours de préparation.
+J'ai aussi enregistré une bonne partie de la modélisation. Le timelapse complet est disponible sur YouTube.
+
+<div style="aspect-ratio: 16 / 9; margin: 1.75rem 0 2.25rem; border: 2px solid #001858; overflow: hidden; background: #001858;">
+  <iframe
+    title="Blender Modeling Timelapse: Stylized Flying Boat for a Godot Game Asset"
+    src="https://www.youtube.com/embed/EIx1oUWk-Oc"
+    width="100%"
+    height="100%"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</div>
 
 <div style="aspect-ratio: 4 / 3; margin: 1.75rem 0 2.25rem; border: 2px solid #001858; overflow: hidden; background: #001858;">
   <iframe
