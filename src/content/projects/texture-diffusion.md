@@ -17,8 +17,7 @@ It takes a capture from your Blender viewport, sends it to a cloud image model, 
 I built it because I wanted AI texturing to stay in Blender, without constant imports and exports, but also because I wanted control: choosing the view, adjusting the projection, painting details by hand, and deciding what stays.
 
 <div style="display:flex; flex-wrap:wrap; gap:12px; margin: 1.5rem 0 2rem 0;">
-  <a href="https://superhivemarket.com/products/textures-diffusion" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#F582AE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on Superhive</a>
-  <a href="https://adriflex.gumroad.com/l/texturesdiffusion" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#8BD3DD; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on Gumroad</a>
+  <a href="https://superhivemarket.com/products/textures-diffusion" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#F582AE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on SuperHive</a>
 </div>
 
 ## Demo videos
@@ -198,8 +197,7 @@ Start with Global Texture to lay down a coherent base across the whole object, t
 The baked texture from Step 5 becomes the canvas of the next Live Paint session.
 
 <div style="display:flex; flex-wrap:wrap; gap:12px; margin: 1.5rem 0 2rem 0;">
-  <a href="https://superhivemarket.com/products/textures-diffusion" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#F582AE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on Superhive</a>
-  <a href="https://adriflex.gumroad.com/l/texturesdiffusion" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#8BD3DD; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on Gumroad</a>
+  <a href="https://superhivemarket.com/products/textures-diffusion" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#F582AE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on SuperHive</a>
 </div>
 
 ## Part 5 - Quality of life
@@ -240,15 +238,10 @@ For quick answers about UVs, PBR, subscription and provider costs, check the FAQ
 
 ## Buy Texture Diffusion v2
 
-Texture Diffusion v2 is available on Superhive and Gumroad.
-
-Superhive is the best option if you prefer staying in the Blender marketplace ecosystem.
-
-Gumroad is a good option if you came from my site or social posts and want the direct checkout.
+Texture Diffusion v2 is available on SuperHive, with installation and updates available directly through Blender's extension system.
 
 <div style="display:flex; flex-wrap:wrap; gap:12px; margin: 1.5rem 0 2rem 0;">
-  <a href="https://superhivemarket.com/products/textures-diffusion" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#F582AE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on Superhive</a>
-  <a href="https://adriflex.gumroad.com/l/texturesdiffusion" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#8BD3DD; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on Gumroad</a>
+  <a href="https://superhivemarket.com/products/textures-diffusion" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#F582AE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on SuperHive</a>
 </div>
 
 ## About v1

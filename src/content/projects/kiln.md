@@ -17,8 +17,7 @@ I built it for my own Godot work. The problem was simple: procedural Blender mat
 Kiln handles that boring part.
 
 <div style="display:flex; flex-wrap:wrap; gap:12px; margin: 1.5rem 0 2rem 0;">
-  <a href="https://superhivemarket.com/products/kiln" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#F582AE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on Superhive</a>
-  <a href="https://adriflex.gumroad.com/l/kiln" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#8BD3DD; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on Gumroad</a>
+  <a href="https://superhivemarket.com/products/kiln" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#F582AE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on SuperHive</a>
   <a href="https://www.youtube.com/watch?v=3BmM6CRAbRA" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#FFFFFE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Watch demo</a>
 </div>
 
@@ -106,13 +105,10 @@ This video shows the original workflow, from procedural Blender materials to a G
 
 ## Availability
 
-Kiln is available on Superhive and Gumroad for $12.
-
-Superhive is the best option if you prefer the Blender marketplace ecosystem. Gumroad is there for direct checkout.
+Kiln is available on SuperHive for $12, with installation and updates available directly through Blender's extension system.
 
 <div style="display:flex; flex-wrap:wrap; gap:12px; margin: 1.5rem 0 2rem 0;">
-  <a href="https://superhivemarket.com/products/kiln" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#F582AE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on Superhive</a>
-  <a href="https://adriflex.gumroad.com/l/kiln" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#8BD3DD; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on Gumroad</a>
+  <a href="https://superhivemarket.com/products/kiln" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#F582AE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Buy on SuperHive</a>
 </div>
 
 ## Notes

@@ -27,7 +27,7 @@ Le panel propose le choix des maps à baker, la résolution par type, la méthod
 
 Depuis, j'ai repris l'idée de zéro dans un nouvel add-on : [Kiln](/projects/kiln).
 
-UniMat reste l'archive du prototype. La version publiée et maintenue s'appelle maintenant [Kiln](/projects/kiln). Elle garde le principe de base — baker des matériaux Blender en textures exportables — mais avec une architecture non destructive, une vraie page produit, une distribution sur SuperHive/Gumroad, et une mise à jour Split Bake pour sortir plusieurs texture sets depuis une seule collection.
+UniMat reste l'archive du prototype. La version publiée et maintenue s'appelle maintenant [Kiln](/projects/kiln). Elle garde le principe de base — baker des matériaux Blender en textures exportables — mais avec une architecture non destructive, une vraie page produit sur SuperHive, et une mise à jour Split Bake pour sortir plusieurs texture sets depuis une seule collection.
 
 → Voir la version actuelle : [Kiln](/projects/kiln)
 
