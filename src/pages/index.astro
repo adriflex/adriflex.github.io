@@ -5,6 +5,7 @@ import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects');
 const allLab = await getCollection('lab');
+const activeLab = allLab.filter(p => p.data.status !== 'archived');
 
 const toSlug = (id: string) => id.replace(/\.md$/, '');
 
@@ -37,7 +38,7 @@ const allItems: CardItem[] = [
     collection: 'projects',
     date: p.data.date,
   })),
-  ...allLab.map(p => ({
+  ...activeLab.map(p => ({
     title: p.data.title,
     description: '',
     slug: toSlug(p.id),
@@ -65,7 +66,7 @@ const years = Object.keys(itemsByYear).map(Number).sort((a, b) => b - a);
 const allTags = [
   ...new Set([
     ...allProjects.filter(p => p.data.status !== 'archived').flatMap(p => p.data.tags),
-    ...allLab.flatMap(p => p.data.tags),
+    ...activeLab.flatMap(p => p.data.tags),
   ])
 ].sort();
 
@@ -74,7 +75,7 @@ const tagCounts: Record<string, number> = {};
 allTags.forEach(tag => {
   tagCounts[tag] = [
     ...allProjects.filter(p => p.data.status !== 'archived' && p.data.tags.includes(tag)),
-    ...allLab.filter(p => p.data.tags.includes(tag)),
+    ...activeLab.filter(p => p.data.tags.includes(tag)),
   ].length;
 });
 ---

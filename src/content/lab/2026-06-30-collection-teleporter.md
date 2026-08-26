@@ -104,15 +104,13 @@ The point was simple: make a technical workflow easier to read, and a little mor
 
 ## Availability
 
-Collection Teleporter is available on SuperHive for Blender 5.1 and newer.
-
-The launch price is $15 for the first 14 days, then it goes to $24.
+Collection Teleporter is available on SuperHive for Blender 5.1 and newer. It costs $24.
 
 <div style="display:flex; flex-wrap:wrap; gap:12px; margin: 1.5rem 0 2rem 0;">
   <a href="https://superhivemarket.com/products/collection-teleporter" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#F582AE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Get Collection Teleporter</a>
   <a href="#full-tutorial" style="display:inline-flex; align-items:center; justify-content:center; padding: 0.75rem 1.1rem; background:#FFFFFE; color:#001858; border:2px solid #001858; font-family:Silkscreen, sans-serif; font-size:16px; text-decoration:none;">Watch the tutorial first</a>
 </div>
 
-I built it for my own Blender scenes first, especially for personal game projects like [Bordeciel](/lab/2026-06-15-bordeciel) and [Ashenmoor](/lab/ashenmoor).
+I built it for my own Blender scenes first, especially for personal game projects like [Bordeciel](/lab/2026-06-15-bordeciel) and [Ashenmoor](/projects/ashenmoor-the-shadows-path).
 
 If your Blender files also start clean and slowly turn into one giant source scene, it might be your kind of tool too.

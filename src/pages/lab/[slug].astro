@@ -16,8 +16,16 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 const slug = entry.id.replace(/\.md$/, '');
 const ogImage = new URL(`og/lab/${slug}.png`, Astro.site).href;
-const statusLabel = entry.data.status === 'published' ? 'Publié' : 'Lab';
-const statusClass = entry.data.status === 'published' ? 'bg-pink' : 'bg-peach';
+const statusLabel = entry.data.status === 'published'
+  ? 'Publié'
+  : entry.data.status === 'archived'
+    ? 'Archivé'
+    : 'Lab';
+const statusClass = entry.data.status === 'published'
+  ? 'bg-pink'
+  : entry.data.status === 'archived'
+    ? 'bg-navy/10'
+    : 'bg-peach';
 const schema = {
   "@context": "https://schema.org",
   "@type": "Article",

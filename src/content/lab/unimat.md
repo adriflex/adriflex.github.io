@@ -3,6 +3,7 @@ title: "UniMat — unifier les matériaux pour l'export"
 date: 2025-06-01
 tags: [blender, addon, 3d, texturing]
 cover: "/images/unimat-cover.webp"
+status: archived
 ---
 
 Dans Blender, on travaille souvent avec plusieurs matériaux sur un même objet ou une même collection. Un matériau pour le bois, un pour le métal, un pour le tissu. En mode édition, c'est pratique. Mais au moment d'exporter vers un moteur de jeu, chaque matériau = un draw call en plus. Ça s'accumule vite.
