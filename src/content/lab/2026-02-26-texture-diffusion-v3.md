@@ -27,7 +27,7 @@ En testant différents modèles, je me suis aperçu que les modèles img2img cla
 
 J'ai aussi créé un système de prompt avancé avec un nuage de mots (tag cloud). Chaque mot ou groupe de mots peut être activé ou désactivé individuellement. L'intérêt : on peut adapter le prompt en fonction du point de vue d'où on se place, sans tout réécrire à chaque fois.
 
-L'add-on propose aussi un workflow complet de texturing multi-vues : on place le modèle sous plusieurs angles, l'IA génère une texture pour tous les points de vue d'un coup, et on assemble le tout avec des masques d'occlusion et des sliders d'intensité par vue. J'ai pu tester ça sur [KESH pour Ashenmoor](/lab/2026-03-02-ashenmoor-kesh).
+L'add-on propose aussi un workflow complet de texturing multi-vues : on place le modèle sous plusieurs angles, l'IA génère une texture pour tous les points de vue d'un coup, et on assemble le tout avec des masques d'occlusion et des sliders d'intensité par vue. J'ai pu tester ça sur [KESH pour Ashenmoor](https://ashenmoor.xyz/en/#devlog).
 
 <img src="/images/td-v2-panel-global.webp" alt="Panel Global Texture — workflow multi-vues en 5 étapes" style="max-width: 50%;" />
 

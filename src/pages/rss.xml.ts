@@ -4,7 +4,7 @@ import type { APIContext } from 'astro';
 
 export async function GET(context: APIContext) {
   const projects = await getCollection('projects', p => p.data.status === 'published');
-  const lab = await getCollection('lab');
+  const lab = await getCollection('lab', entry => entry.data.status !== 'archived');
 
   const allItems = [
     ...projects.map(p => ({
