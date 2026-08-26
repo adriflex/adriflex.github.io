@@ -8,4 +8,4 @@ status: archived
 
 Cet ancien article a été transféré vers le journal de développement officiel d’Ashenmoor.
 
-→ [Retrouver les devlogs d’Ashenmoor](https://ashenmoor.xyz/en/#devlog)
+→ [Lire « Kesh Takes Shape » sur Ashenmoor](https://ashenmoor.xyz/en/devlog/kesh-takes-shape/)

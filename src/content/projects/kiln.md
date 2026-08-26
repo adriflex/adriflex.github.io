@@ -115,6 +115,6 @@ Kiln is available on SuperHive for $12, with installation and updates available 
 
 Kiln is an evolution of [UniMat](/lab/unimat), an earlier experiment around the same problem. UniMat proved the workflow was useful, but its architecture was too fragile. Kiln is the rebuilt, published version.
 
-I also use it in my own game pipeline, including [Orb of Avarice](/projects/orb-of-avarice), [Ashenmoor - KESH takes shape](https://ashenmoor.xyz/en/#devlog) and [Bordeciel](/lab/2026-06-15-bordeciel).
+I also use it in my own game pipeline, including [Orb of Avarice](/projects/orb-of-avarice), [Ashenmoor - KESH takes shape](https://ashenmoor.xyz/en/devlog/kesh-takes-shape/) and [Bordeciel](/lab/2026-06-15-bordeciel).
 
 The public release thread and update notes are on [Blender Artists](https://blenderartists.org/t/kiln-bake-procedural-materials-for-glb-export-godot-unity-web/1636275).
