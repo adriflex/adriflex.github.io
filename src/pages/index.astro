@@ -36,7 +36,7 @@ const allItems: CardItem[] = [
     status: p.data.status,
     statusLabel: p.data.status === 'wip' ? 'En cours' : 'Publié',
     collection: 'projects',
-    date: p.data.date,
+    date: p.data.updated ?? p.data.date,
   })),
   ...activeLab.map(p => ({
     title: p.data.title,

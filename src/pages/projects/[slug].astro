@@ -24,6 +24,7 @@ const schema = {
   "url": Astro.url.href,
   "image": ogImage,
   "dateCreated": entry.data.date.toISOString().split('T')[0],
+  ...(entry.data.updated && { "dateModified": entry.data.updated.toISOString().split('T')[0] }),
   "keywords": entry.data.tags.join(', '),
   "author": { "@type": "Person", "name": "Adrien Rouquié", "url": "https://adriflex.github.io" },
 };
@@ -70,8 +71,9 @@ const schema = {
 
       <!-- Date + badge statut -->
       <div class="flex items-center gap-3 mb-4 flex-wrap">
-        <time class="font-body text-[13px] text-para/40">
-          {new Date(entry.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+        <time class="font-body text-[13px] text-para/40" datetime={(entry.data.updated ?? entry.data.date).toISOString()}>
+          {entry.data.updated ? 'Mis à jour le ' : ''}
+          {new Date(entry.data.updated ?? entry.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
         </time>
         {entry.data.status === 'wip' && (
           <span class="font-display px-font text-[8px] px-3 py-1 rounded-[2px] bg-accent text-navy">

@@ -1,15 +1,16 @@
 ---
 title: "Ashenmoor — The Shadow's Path"
-description: "Un jeu dark fantasy en développement, construit autour de l'exploration, de l'observation et d'un monde étrange qui se dévoile par ses détails."
+description: "Un jeu dark fantasy en développement où l'on explore un petit monde étrange aux côtés de Kesh."
 date: 2026-02-01
+updated: 2026-08-26
 tags: [jeu, godot, blender, 3d, univers, dark-fantasy]
 featured: true
 color: "#788c5d"
 status: wip
 link: "https://ashenmoor.xyz"
 ctaLabel: "Découvrir Ashenmoor ↗"
-cover: "/images/ashenmoor-village-current.jpg"
-coverFull: false
+cover: "/images/ashenmoor-vignette.png"
+coverFull: true
 ---
 
 **Ashenmoor — The Shadow's Path** est le jeu que je développe avec Blender et Godot.
