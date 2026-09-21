@@ -2,9 +2,10 @@
 title: "Nitro Retopo: a different way to rework dense meshes"
 date: 2026-09-21
 tags: [blender, addon, retopology, 3d, tools]
-cover: "/images/nitro-retopo-cover.png"
+cover: "/images/nitro-retopo-cover-005.png"
 coverFull: true
-coverInContent: true
+coverAfterHeader: true
+coverFit: contain
 status: published
 ---
 
@@ -15,8 +16,6 @@ The idea is simple: keep working on a shape I like, even when its geometry is di
 <div style="margin:1.25rem 0 1.5rem;">
   <a href="https://superhivemarket.com/products/nitro-retopo" style="display:inline-flex;align-items:center;justify-content:center;padding:0.85rem 1.2rem;background:#F582AE;color:#001858;border:2px solid #001858;box-shadow:4px 4px 0 #001858;font-family:Silkscreen,sans-serif;font-size:16px;text-decoration:none;">Get Nitro Retopo on SuperHive ↗</a>
 </div>
-
-![Nitro Retopo: a dense knight mesh compared with its new topology](/images/nitro-retopo-cover.png)
 
 ## Draw the regions, choose the flow
 

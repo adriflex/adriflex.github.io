@@ -7,6 +7,7 @@ interface Props {
   tags: string[];
   featured?: boolean;
   cover?: string;
+  coverFit?: 'cover' | 'contain';
   status?: string;
   statusLabel?: string;
   collection?: string;
@@ -19,6 +20,7 @@ const {
   tags,
   featured,
   cover,
+  coverFit = 'cover',
   status = 'published',
   statusLabel = '',
   collection = 'projects',
@@ -36,12 +38,12 @@ const badgeBg: Record<string, string> = {
   style={`--project-color: ${color};`}
 >
   <!-- Image area -->
-  <div class="h-[180px] relative overflow-hidden">
+  <div class="h-[180px] relative overflow-hidden" style={coverFit === 'contain' ? 'background:#202020;' : undefined}>
     {cover ? (
       <img
         src={cover}
         alt={title}
-        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+        class={coverFit === 'contain' ? 'w-full h-full object-contain' : 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]'}
       />
     ) : (
       <>

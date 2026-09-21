@@ -18,6 +18,7 @@ type CardItem = {
   tags: string[];
   featured: boolean;
   cover?: string;
+  coverFit?: 'cover' | 'contain';
   status: string;
   statusLabel: string;
   collection: string;
@@ -39,6 +40,7 @@ const allItems: CardItem[] = [
     date: p.data.updated ?? p.data.date,
   })),
   ...activeLab.map(p => ({
+    coverFit: p.data.coverFit,
     title: p.data.title,
     description: '',
     slug: toSlug(p.id),
@@ -136,6 +138,7 @@ allTags.forEach(tag => {
                 tags={item.tags}
                 featured={item.featured}
                 cover={item.cover}
+                coverFit={item.coverFit}
                 status={item.status}
                 statusLabel={item.statusLabel}
                 collection={item.collection}

@@ -47,12 +47,12 @@ const schema = {
       </a>
 
       <!-- Cover image — full container width -->
-      {entry.data.cover && !entry.data.coverInContent && entry.data.coverFull && (
+      {entry.data.cover && !entry.data.coverAfterHeader && entry.data.coverFull && (
         <div class="rounded-[2px] border-2 border-navy overflow-hidden mb-10">
           <img src={entry.data.cover} alt={entry.data.title} class="w-full h-auto lightbox-trigger cursor-zoom-in" />
         </div>
       )}
-      {entry.data.cover && !entry.data.coverInContent && !entry.data.coverFull && (
+      {entry.data.cover && !entry.data.coverAfterHeader && !entry.data.coverFull && (
         <div class="rounded-[2px] border-2 border-navy overflow-hidden mb-10" style="height: clamp(200px, 30vw, 360px);">
           <img src={entry.data.cover} alt={entry.data.title} class="w-full h-full object-cover lightbox-trigger cursor-zoom-in" style={`object-position: ${entry.data.coverPosition};`} />
         </div>
@@ -77,6 +77,12 @@ const schema = {
           </span>
         ))}
       </div>
+
+      {entry.data.cover && entry.data.coverAfterHeader && (
+        <div class="border-2 border-navy overflow-hidden mb-8">
+          <img src={entry.data.cover} alt={entry.data.title} class="w-full h-auto lightbox-trigger cursor-zoom-in" />
+        </div>
+      )}
 
       <!-- Séparateur pixel -->
       <div class="px-sep mb-10"></div>
