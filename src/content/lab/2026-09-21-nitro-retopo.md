@@ -17,6 +17,25 @@ The idea is simple: keep working on a shape I like, even when its geometry is di
   <a href="https://superhivemarket.com/products/nitro-retopo" style="display:inline-flex;align-items:center;justify-content:center;padding:0.85rem 1.2rem;background:#F582AE;color:#001858;border:2px solid #001858;box-shadow:4px 4px 0 #001858;font-family:Silkscreen,sans-serif;font-size:16px;text-decoration:none;">Get Nitro Retopo on SuperHive ↗</a>
 </div>
 
+## Watch the tutorial
+
+This short tutorial walks through the Nitro Retopo workflow in Blender.
+
+<div id="tutorial" style="aspect-ratio:16 / 9;margin:1.5rem 0;border:2px solid #001858;overflow:hidden;">
+  <iframe
+    src="https://www.youtube.com/embed/4U-Eeqd8REQ"
+    title="Nitro Retopo tutorial in Blender"
+    width="100%"
+    height="100%"
+    style="display:block;border:0;"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</div>
+
+[Watch on YouTube](https://www.youtube.com/watch?v=4U-Eeqd8REQ)
+
 ## Draw the regions, choose the flow
 
 I draw boundaries directly on the surface to divide it into patches. Curves, straight lines and freehand strokes let me describe the parts I want to work on.
@@ -34,8 +53,6 @@ I've been using Nitro Retopo on this AI-generated knight, working on individual 
 <img src="/images/nitro-retopo-knight.png" alt="Full knight before and after retopology, with the dense source on the left and new topology on the right" width="828" height="1101" loading="lazy" style="display:block;width:100%;max-width:480px;height:auto;margin:1.5rem auto;border:0;border-radius:0;background:transparent;box-shadow:none;" />
 
 I developed the addon with substantial help from AI coding tools, shaping and testing the workflow through my own 3D work. Further editing depends on the model and what I want to use it for.
-
-<!-- Add the approved Nitro Retopo demo here when its YouTube URL is available. -->
 
 **Available for Blender 5.2 and newer.** The product page has the full tool overview and installation guide.
 
