@@ -59,3 +59,11 @@ I developed the addon with substantial help from AI coding tools, shaping and te
 <div style="margin:1.5rem 0 2rem;">
   <a href="https://superhivemarket.com/products/nitro-retopo" style="display:inline-flex;align-items:center;justify-content:center;padding:0.85rem 1.2rem;background:#F582AE;color:#001858;border:2px solid #001858;box-shadow:4px 4px 0 #001858;font-family:Silkscreen,sans-serif;font-size:16px;text-decoration:none;">Get Nitro Retopo on SuperHive ↗</a>
 </div>
+
+## Featured on CGbox
+
+Japanese CG publication CGbox featured Nitro Retopo in an article introducing its main tools and workflow.
+
+[Read the article on CGbox (in Japanese)](https://cgbox.jp/2026/10/02/news-addon-nitro-retopo/)
+
+CGbox is now an affiliate for Nitro Retopo on SuperHive.
